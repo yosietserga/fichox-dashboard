@@ -17,12 +17,12 @@ export const BRAND = {
 };
 
 export const PALETTE = [
-  { name: "Emerald Primario", hex: "#0f8a6a", role: "Confianza, dinero, crecimiento", text: "light" },
-  { name: "Emerald Profundo", hex: "#0a6b52", role: "Texto, headers, CTA fuerte", text: "light" },
-  { name: "Esmeralda Claro", hex: "#14b386", role: "Acentos, hovers, gráficos", text: "light" },
+  { name: "Azul Primario", hex: "#1d4ed8", role: "Confianza, dinero, crecimiento, tecnología", text: "light" },
+  { name: "Azul Profundo", hex: "#1e3a8a", role: "Texto, headers, CTA fuerte", text: "light" },
+  { name: "Azul Brillante", hex: "#3b82f6", role: "Acentos, hovers, gráficos", text: "light" },
   { name: "Amber Acento", hex: "#f59e0b", role: "Energía, valor, destacados", text: "dark" },
   { name: "Amber Suave", hex: "#fbbf24", role: "Badges, highlights, descuentos", text: "dark" },
-  { name: "Tinta Bosque", hex: "#0b1f1a", role: "Tipografía principal, fondo oscuro", text: "light" },
+  { name: "Tinta Noche", hex: "#0b1220", role: "Tipografía principal, fondo oscuro", text: "light" },
   { name: "Arena Cálida", hex: "#f7f5f0", role: "Fondo neutro cálido, secciones", text: "dark" },
   { name: "Blanco Crisp", hex: "#ffffff", role: "Tarjetas, contraste", text: "dark" },
 ];

@@ -23,12 +23,12 @@ import {
   CUMULATIVE_BREAKEVEN_MONTH, CANVAS, MARKETING_CHANNELS, GROWTH_TARGETS,
 } from '@/lib/business-data'
 
-const EMERALD = '#0f8a6a'
-const EMERALD_DARK = '#0a6b52'
-const EMERALD_LIGHT = '#14b386'
+const BLUE = '#1d4ed8'
+const BLUE_DARK = '#1e3a8a'
+const BLUE_LIGHT = '#3b82f6'
 const AMBER = '#f59e0b'
 const AMBER_LIGHT = '#fbbf24'
-const INK = '#0b1f1a'
+const INK = '#0b1220'
 const SAND = '#f7f5f0'
 
 const iconMap: Record<string, React.ComponentType<{ className?: string }>> = {
@@ -44,10 +44,10 @@ function Stat({
   icon: Icon, label, value, sub, accent,
 }: {
   icon: React.ComponentType<{ className?: string }>
-  label: string; value: string; sub?: string; accent?: 'emerald' | 'amber'
+  label: string; value: string; sub?: string; accent?: 'blue' | 'amber'
 }) {
-  const ring = accent === 'amber' ? 'border-amber-200 bg-amber-50' : 'border-emerald-200 bg-emerald-50'
-  const fg = accent === 'amber' ? 'text-amber-600' : 'text-emerald-600'
+  const ring = accent === 'amber' ? 'border-amber-200 bg-amber-50' : 'border-blue-200 bg-blue-50'
+  const fg = accent === 'amber' ? 'text-amber-600' : 'text-blue-600'
   return (
     <div className={`rounded-2xl border ${ring} p-4 sm:p-5`}>
       <div className="flex items-center gap-2 mb-1.5">
@@ -65,7 +65,7 @@ function SectionTitle({ kicker, title, desc }: { kicker: string; title: string; 
     <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true, margin: '-80px' }} className="mb-6 sm:mb-8">
       <div className="flex items-center gap-2 mb-2">
         <span className="h-1.5 w-6 rounded-full" style={{ background: AMBER }} />
-        <span className="text-xs font-semibold uppercase tracking-[0.18em]" style={{ color: EMERALD_DARK }}>{kicker}</span>
+        <span className="text-xs font-semibold uppercase tracking-[0.18em]" style={{ color: BLUE_DARK }}>{kicker}</span>
       </div>
       <h2 className="text-2xl sm:text-3xl md:text-4xl font-bold tracking-tight">{title}</h2>
       {desc && <p className="text-sm sm:text-base text-muted-foreground mt-2 max-w-2xl">{desc}</p>}
@@ -79,10 +79,10 @@ export default function Home() {
   return (
     <div className="min-h-screen flex flex-col bg-white">
       {/* ===================== STICKY HEADER ===================== */}
-      <header className="sticky top-0 z-50 border-b border-emerald-100/70 bg-white/85 backdrop-blur-md">
+      <header className="sticky top-0 z-50 border-b border-blue-100/70 bg-white/85 backdrop-blur-md">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 h-14 sm:h-16 flex items-center justify-between">
           <a href="#top" className="flex items-center gap-2.5">
-            <img src={BRAND.logo} alt="Logo FichoX" className="size-8 sm:size-9 rounded-xl object-cover ring-1 ring-emerald-200" />
+            <img src={BRAND.logo} alt="Logo FichoX" className="size-8 sm:size-9 rounded-xl object-cover ring-1 ring-blue-200" />
             <div className="leading-tight">
               <p className="font-bold text-sm sm:text-base" style={{ color: INK }}>{BRAND.name}</p>
               <p className="text-[10px] sm:text-[11px] text-muted-foreground -mt-0.5">Plan de Negocio · {BRAND.platform}</p>
@@ -97,13 +97,13 @@ export default function Home() {
               ['ROI', '#roi'],
               ['Marca', '#marca'],
             ].map(([label, href]) => (
-              <a key={href} href={href} className="px-3 py-1.5 rounded-lg text-muted-foreground hover:text-foreground hover:bg-emerald-50 transition-colors">{label}</a>
+              <a key={href} href={href} className="px-3 py-1.5 rounded-lg text-muted-foreground hover:text-foreground hover:bg-blue-50 transition-colors">{label}</a>
             ))}
           </nav>
           <a
             href="#roi"
             className="inline-flex items-center gap-1.5 rounded-full px-3.5 py-1.5 text-xs font-semibold text-white shadow-sm transition-transform hover:scale-105"
-            style={{ background: EMERALD }}
+            style={{ background: BLUE }}
           >
             <Zap className="size-3.5" />
             Ver proyección
@@ -112,10 +112,10 @@ export default function Home() {
       </header>
 
       {/* ===================== HERO ===================== */}
-      <section id="top" className="relative overflow-hidden" style={{ background: `linear-gradient(135deg, ${INK} 0%, ${EMERALD_DARK} 100%)` }}>
+      <section id="top" className="relative overflow-hidden" style={{ background: `linear-gradient(135deg, ${INK} 0%, ${BLUE_DARK} 100%)` }}>
         <div className="absolute inset-0 opacity-[0.07]" style={{ backgroundImage: 'radial-gradient(circle at 1px 1px, white 1px, transparent 0)', backgroundSize: '28px 28px' }} />
         <div className="absolute -top-24 -right-24 size-72 rounded-full blur-3xl opacity-30" style={{ background: AMBER }} />
-        <div className="absolute -bottom-32 -left-20 size-80 rounded-full blur-3xl opacity-20" style={{ background: EMERALD_LIGHT }} />
+        <div className="absolute -bottom-32 -left-20 size-80 rounded-full blur-3xl opacity-20" style={{ background: BLUE_LIGHT }} />
 
         <div className="relative mx-auto max-w-6xl px-4 sm:px-6 py-14 sm:py-20 lg:py-24">
           <motion.div initial="hidden" animate="show" variants={fadeUp} className="grid lg:grid-cols-[1.15fr_0.85fr] gap-10 lg:gap-16 items-center">
@@ -156,15 +156,15 @@ export default function Home() {
 
             <motion.div initial={{ opacity: 0, scale: 0.9 }} animate={{ opacity: 1, scale: 1 }} transition={{ duration: 0.6, delay: 0.15 }} className="flex justify-center lg:justify-end">
               <div className="relative">
-                <div className="absolute inset-0 rounded-[2rem] blur-2xl opacity-40" style={{ background: EMERALD_LIGHT }} />
+                <div className="absolute inset-0 rounded-[2rem] blur-2xl opacity-40" style={{ background: BLUE_LIGHT }} />
                 <div className="relative rounded-[2rem] bg-white p-5 sm:p-7 shadow-2xl ring-1 ring-white/40 max-w-xs">
-                  <img src={BRAND.logo} alt={`Logo ${BRAND.name}`} className="w-full aspect-square rounded-2xl object-cover ring-1 ring-emerald-100" />
+                  <img src={BRAND.logo} alt={`Logo ${BRAND.name}`} className="w-full aspect-square rounded-2xl object-cover ring-1 ring-blue-100" />
                   <div className="mt-4 text-center">
                     <p className="text-lg font-bold" style={{ color: INK }}>{BRAND.name}</p>
-                    <p className="text-xs text-muted-foreground">Identidad de marca · Emerald + Amber</p>
+                    <p className="text-xs text-muted-foreground">Identidad de marca · Azul + Amber</p>
                   </div>
                   <div className="mt-4 flex gap-2 justify-center">
-                    {[EMERALD, AMBER, INK, SAND].map((c) => (
+                    {[BLUE, AMBER, INK, SAND].map((c) => (
                       <span key={c} className="size-5 rounded-full ring-1 ring-black/10" style={{ background: c }} />
                     ))}
                   </div>
@@ -197,7 +197,7 @@ export default function Home() {
           <Stat icon={TrendingUp} label="Breakeven acumulado" value={`Mes ${CUMULATIVE_BREAKEVEN_MONTH}`} sub={`Operativo desde mes ${OPERATING_BREAKEVEN_MONTH}`} />
         </div>
 
-        <Card className="mt-6 overflow-hidden border-emerald-100">
+        <Card className="mt-6 overflow-hidden border-blue-100">
           <CardContent className="p-5 sm:p-6">
             <div className="flex items-start gap-3">
               <div className="size-9 rounded-xl grid place-items-center shrink-0" style={{ background: SAND }}>
@@ -267,7 +267,7 @@ export default function Home() {
       </section>
 
       {/* ===================== MARKETING PLAN ===================== */}
-      <section id="marketing" className="w-full border-y border-emerald-100" style={{ background: SAND }}>
+      <section id="marketing" className="w-full border-y border-blue-100" style={{ background: SAND }}>
         <div className="mx-auto max-w-6xl px-4 sm:px-6 py-14 sm:py-20">
           <SectionTitle
             kicker="Plan de marketing"
@@ -279,10 +279,10 @@ export default function Home() {
             {MARKETING_CHANNELS.map((ch) => {
               const Icon = iconMap[ch.icon] ?? Megaphone
               return (
-                <Card key={ch.channel} className="border-emerald-100/70 hover:shadow-md transition-shadow">
+                <Card key={ch.channel} className="border-blue-100/70 hover:shadow-md transition-shadow">
                   <CardContent className="p-5">
                     <div className="flex items-center justify-between mb-3">
-                      <div className="size-9 rounded-xl grid place-items-center" style={{ background: EMERALD, color: 'white' }}>
+                      <div className="size-9 rounded-xl grid place-items-center" style={{ background: BLUE, color: 'white' }}>
                         <Icon className="size-4.5" />
                       </div>
                       <Badge variant="outline" className="text-[11px]">{Math.round(ch.share * 100)}% de leads</Badge>
@@ -294,14 +294,14 @@ export default function Home() {
                       <div><span className="text-muted-foreground">Presupuesto:</span> <span className="font-semibold">${ch.budget}/mes</span></div>
                       <div><span className="text-muted-foreground">Cadencia:</span> <span className="font-semibold">{ch.cadence}</span></div>
                     </div>
-                    <p className="text-[11px] mt-2 text-emerald-700 font-medium">KPI: {ch.kpi}</p>
+                    <p className="text-[11px] mt-2 text-blue-700 font-medium">KPI: {ch.kpi}</p>
                   </CardContent>
                 </Card>
               )
             })}
           </div>
 
-          <Card className="border-emerald-200">
+          <Card className="border-blue-200">
             <CardHeader>
               <CardTitle className="flex items-center gap-2 text-base"><Target className="size-4" style={{ color: AMBER }} /> Metas de crecimiento por fase</CardTitle>
               <CardDescription>Clientes pagos acumulados al final de cada fase</CardDescription>
@@ -318,10 +318,10 @@ export default function Home() {
                   </thead>
                   <tbody>
                     {GROWTH_TARGETS.map((g, i) => (
-                      <tr key={g.phase} className={i % 2 ? 'bg-emerald-50/40' : ''}>
+                      <tr key={g.phase} className={i % 2 ? 'bg-blue-50/40' : ''}>
                         <td className="px-5 py-3.5 font-semibold align-top whitespace-nowrap">{g.phase}</td>
                         <td className="px-5 py-3.5 align-top">
-                          <Badge style={{ background: EMERALD, color: 'white' }} className="border-0">{g.target}</Badge>
+                          <Badge style={{ background: BLUE, color: 'white' }} className="border-0">{g.target}</Badge>
                         </td>
                         <td className="px-5 py-3.5 text-muted-foreground align-top">{g.focus}</td>
                       </tr>
@@ -348,14 +348,14 @@ export default function Home() {
           <Stat icon={Banknote} label="Costos fijos / mes" value={`$${TOTAL_FIXED}`} sub="Hosting + operador + ads baseline" accent="amber" />
         </div>
 
-        <Card className="mt-6 border-emerald-100">
+        <Card className="mt-6 border-blue-100">
           <CardHeader>
             <CardTitle className="text-base">Desglose de costos fijos mensuales</CardTitle>
           </CardHeader>
           <CardContent className="p-0">
             <div className="grid sm:grid-cols-3 gap-x-6 gap-y-2 px-5 sm:px-6 pb-5 text-sm">
               {Object.entries(FINANCE.fixedCosts).map(([k, v]) => (
-                <div key={k} className="flex items-center justify-between py-1.5 border-b border-dashed border-emerald-100/70 last:border-0">
+                <div key={k} className="flex items-center justify-between py-1.5 border-b border-dashed border-blue-100/70 last:border-0">
                   <span className="capitalize text-muted-foreground">{k}</span>
                   <span className="font-mono font-semibold">${v}</span>
                 </div>
@@ -366,7 +366,7 @@ export default function Home() {
       </section>
 
       {/* ===================== BREAKEVEN ===================== */}
-      <section id="breakeven" className="w-full" style={{ background: `linear-gradient(135deg, ${INK} 0%, ${EMERALD_DARK} 100%)` }}>
+      <section id="breakeven" className="w-full" style={{ background: `linear-gradient(135deg, ${INK} 0%, ${BLUE_DARK} 100%)` }}>
         <div className="relative mx-auto max-w-6xl px-4 sm:px-6 py-16 sm:py-24">
           <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }} className="text-center mb-10">
             <Badge className="border-0 text-amber-950 mb-4" style={{ background: AMBER_LIGHT }}>
@@ -414,10 +414,10 @@ export default function Home() {
         <SectionTitle kicker="Curva de ROI" title="Proyección a 12 meses" desc="Ingreso vs. costo mensual, flujo de caja acumulado (incluyendo seed de $3,000) y ROI sobre capital invertido. El cruce a cero marca el breakeven acumulado." />
 
         <div className="grid lg:grid-cols-[1.4fr_1fr] gap-5">
-          <Card className="border-emerald-100">
+          <Card className="border-blue-100">
             <CardHeader className="pb-2">
-              <CardTitle className="text-base flex items-center gap-2"><TrendingUp className="size-4" style={{ color: EMERALD }} /> Ingreso vs. Costo mensual</CardTitle>
-              <CardDescription>USD por mes · Barras: ingreso (esmeralda) y costo total (ámbar)</CardDescription>
+              <CardTitle className="text-base flex items-center gap-2"><TrendingUp className="size-4" style={{ color: BLUE }} /> Ingreso vs. Costo mensual</CardTitle>
+              <CardDescription>USD por mes · Barras: ingreso (azul) y costo total (ámbar)</CardDescription>
             </CardHeader>
             <CardContent>
               <div className="h-[300px] sm:h-[340px] w-full">
@@ -431,7 +431,7 @@ export default function Home() {
                       formatter={(v: number, n: string) => [`$${v.toLocaleString()}`, n]}
                     />
                     <Legend wrapperStyle={{ fontSize: 12 }} />
-                    <Bar dataKey="revenue" name="Ingreso" fill={EMERALD} radius={[4, 4, 0, 0]} maxBarSize={26} />
+                    <Bar dataKey="revenue" name="Ingreso" fill={BLUE} radius={[4, 4, 0, 0]} maxBarSize={26} />
                     <Bar dataKey="totalCosts" name="Costo total" fill={AMBER} radius={[4, 4, 0, 0]} maxBarSize={26} />
                   </ComposedChart>
                 </ResponsiveContainer>
@@ -439,7 +439,7 @@ export default function Home() {
             </CardContent>
           </Card>
 
-          <Card className="border-emerald-100">
+          <Card className="border-blue-100">
             <CardHeader className="pb-2">
               <CardTitle className="text-base flex items-center gap-2"><Gauge className="size-4" style={{ color: AMBER }} /> Flujo de caja acumulado</CardTitle>
               <CardDescription>Cruce de cero = breakeven acumulado (recupera el seed)</CardDescription>
@@ -450,8 +450,8 @@ export default function Home() {
                   <AreaChart data={PROJECTION} margin={{ top: 8, right: 8, left: -8, bottom: 0 }}>
                     <defs>
                       <linearGradient id="cumGrad" x1="0" y1="0" x2="0" y2="1">
-                        <stop offset="0%" stopColor={EMERALD} stopOpacity={0.35} />
-                        <stop offset="100%" stopColor={EMERALD} stopOpacity={0.02} />
+                        <stop offset="0%" stopColor={BLUE} stopOpacity={0.35} />
+                        <stop offset="100%" stopColor={BLUE} stopOpacity={0.02} />
                       </linearGradient>
                     </defs>
                     <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" vertical={false} />
@@ -462,7 +462,7 @@ export default function Home() {
                       formatter={(v: number, n: string) => [`$${v.toLocaleString()}`, n]}
                     />
                     <ReferenceLine y={0} stroke="#9ca3af" strokeWidth={1.5} strokeDasharray="4 4" />
-                    <Area type="monotone" dataKey="cumulativeNet" name="Caja acumulada" stroke={EMERALD} strokeWidth={2.5} fill="url(#cumGrad)" />
+                    <Area type="monotone" dataKey="cumulativeNet" name="Caja acumulada" stroke={BLUE} strokeWidth={2.5} fill="url(#cumGrad)" />
                   </AreaChart>
                 </ResponsiveContainer>
               </div>
@@ -471,9 +471,9 @@ export default function Home() {
         </div>
 
         {/* ROI % line */}
-        <Card className="mt-5 border-emerald-100">
+        <Card className="mt-5 border-blue-100">
           <CardHeader className="pb-2">
-            <CardTitle className="text-base flex items-center gap-2"><Percent className="size-4" style={{ color: EMERALD_DARK }} /> ROI sobre capital invertido</CardTitle>
+            <CardTitle className="text-base flex items-center gap-2"><Percent className="size-4" style={{ color: BLUE_DARK }} /> ROI sobre capital invertido</CardTitle>
             <CardDescription>Caja acumulada / capital invertido a la fecha</CardDescription>
           </CardHeader>
           <CardContent>
@@ -499,7 +499,7 @@ export default function Home() {
         </Card>
 
         {/* Projection table */}
-        <Card className="mt-5 border-emerald-100">
+        <Card className="mt-5 border-blue-100">
           <CardHeader>
             <CardTitle className="text-base">Tabla de proyección · 12 meses</CardTitle>
             <CardDescription>Clientes, ingreso, costos, beneficio neto y caja acumulada</CardDescription>
@@ -521,20 +521,20 @@ export default function Home() {
                 </thead>
                 <tbody>
                   {PROJECTION.map((r) => (
-                    <tr key={r.month} className={`border-b last:border-0 ${r.netProfit >= 0 ? 'bg-emerald-50/40' : 'bg-amber-50/30'}`}>
+                    <tr key={r.month} className={`border-b last:border-0 ${r.netProfit >= 0 ? 'bg-blue-50/40' : 'bg-amber-50/30'}`}>
                       <td className="px-4 py-2.5 font-semibold">{r.label}</td>
                       <td className="px-4 py-2.5 text-right font-mono">{r.customers}</td>
                       <td className="px-4 py-2.5 text-right font-mono text-muted-foreground">+{r.newCustomers}</td>
                       <td className="px-4 py-2.5 text-right font-mono">${r.revenue.toLocaleString()}</td>
                       <td className="px-4 py-2.5 text-right font-mono text-muted-foreground">${r.totalCosts.toLocaleString()}</td>
-                      <td className={`px-4 py-2.5 text-right font-mono font-semibold ${r.netProfit >= 0 ? 'text-emerald-700' : 'text-amber-700'}`}>
+                      <td className={`px-4 py-2.5 text-right font-mono font-semibold ${r.netProfit >= 0 ? 'text-blue-700' : 'text-amber-700'}`}>
                         {r.netProfit >= 0 ? '+' : ''}{r.netProfit.toLocaleString()}
                       </td>
-                      <td className={`px-4 py-2.5 text-right font-mono font-semibold ${r.cumulativeNet >= 0 ? 'text-emerald-700' : 'text-foreground'}`}>
+                      <td className={`px-4 py-2.5 text-right font-mono font-semibold ${r.cumulativeNet >= 0 ? 'text-blue-700' : 'text-foreground'}`}>
                         {r.cumulativeNet >= 0 ? '+' : ''}{r.cumulativeNet.toLocaleString()}
                       </td>
                       <td className="px-4 py-2.5 text-right font-mono">
-                        <span className={r.roi >= 0 ? 'text-emerald-700' : 'text-muted-foreground'}>{r.roi}%</span>
+                        <span className={r.roi >= 0 ? 'text-blue-700' : 'text-muted-foreground'}>{r.roi}%</span>
                       </td>
                     </tr>
                   ))}
@@ -546,15 +546,15 @@ export default function Home() {
       </section>
 
       {/* ===================== BRAND IDENTITY ===================== */}
-      <section id="marca" className="w-full border-t border-emerald-100" style={{ background: SAND }}>
+      <section id="marca" className="w-full border-t border-blue-100" style={{ background: SAND }}>
         <div className="mx-auto max-w-6xl px-4 sm:px-6 py-14 sm:py-20">
-          <SectionTitle kicker="Identidad de marca" title="Logo y paleta de colores" desc="Recomendación basada en el código (WhiteLabel model define #0f8a6a + #f59e0b). Esmeralda = confianza/dinero/crecimiento; Ámbar = energía/valor/calidez venezolana." />
+          <SectionTitle kicker="Identidad de marca" title="Logo y paleta de colores" desc="Paleta azul + ámbar. Azul = confianza/dinero/tecnología/crecimiento; Ámbar = energía/valor/calidez venezolana. Mantenemos el ámbar del WhiteLabel model original (#f59e0b) y cambiamos el verde por azul (#1d4ed8)." />
 
           <div className="grid lg:grid-cols-[0.85fr_1.15fr] gap-6">
             {/* Logo card */}
-            <Card className="overflow-hidden border-emerald-100">
+            <Card className="overflow-hidden border-blue-100">
               <CardContent className="p-0">
-                <div className="p-8 grid place-items-center" style={{ background: `linear-gradient(135deg, ${INK}, ${EMERALD_DARK})` }}>
+                <div className="p-8 grid place-items-center" style={{ background: `linear-gradient(135deg, ${INK}, ${BLUE_DARK})` }}>
                   <img src={BRAND.logo} alt={`Logo ${BRAND.name}`} className="w-40 h-40 rounded-2xl object-cover ring-2 ring-white/20 shadow-xl" />
                 </div>
                 <div className="p-5">
@@ -567,7 +567,7 @@ export default function Home() {
                     <ConceptRow label="Usos" value="App icon, favicon, watermark en fichas, avatar IG" />
                   </div>
                   <div className="mt-4 flex gap-2">
-                    <span className="size-8 rounded-lg ring-1 ring-black/10" style={{ background: EMERALD }} title="Primario" />
+                    <span className="size-8 rounded-lg ring-1 ring-black/10" style={{ background: BLUE }} title="Primario" />
                     <span className="size-8 rounded-lg ring-1 ring-black/10" style={{ background: AMBER }} title="Acento" />
                     <span className="size-8 rounded-lg ring-1 ring-black/10" style={{ background: INK }} title="Tinta" />
                     <span className="size-8 rounded-lg ring-1 ring-black/10" style={{ background: SAND }} title="Arena" />
@@ -577,10 +577,10 @@ export default function Home() {
             </Card>
 
             {/* Palette */}
-            <Card className="border-emerald-100">
+            <Card className="border-blue-100">
               <CardHeader>
-                <CardTitle className="text-base flex items-center gap-2"><Palette className="size-4" style={{ color: EMERALD }} /> Paleta cromática</CardTitle>
-                <CardDescription>8 colores · usa Esmeralda como primario y Ámbar como acento (≤15%)</CardDescription>
+                <CardTitle className="text-base flex items-center gap-2"><Palette className="size-4" style={{ color: BLUE }} /> Paleta cromática</CardTitle>
+                <CardDescription>8 colores · usa Azul como primario y Ámbar como acento (≤15%)</CardDescription>
               </CardHeader>
               <CardContent className="space-y-2.5">
                 {PALETTE.map((c) => (
@@ -588,7 +588,7 @@ export default function Home() {
                     key={c.hex}
                     onMouseEnter={() => setHoveredColor(c.hex)}
                     onMouseLeave={() => setHoveredColor(null)}
-                    className="flex items-center gap-3 rounded-xl p-2.5 transition-all cursor-pointer ring-1 ring-transparent hover:ring-emerald-200"
+                    className="flex items-center gap-3 rounded-xl p-2.5 transition-all cursor-pointer ring-1 ring-transparent hover:ring-blue-200"
                     style={{ background: hoveredColor === c.hex ? c.hex + '12' : 'transparent' }}
                   >
                     <div className="size-12 rounded-lg shrink-0 ring-1 ring-black/10 shadow-sm" style={{ background: c.hex }} />
@@ -608,8 +608,8 @@ export default function Home() {
                   </div>
                 ))}
                 <div className="mt-3 rounded-xl p-3.5 text-xs leading-relaxed" style={{ background: '#fff', border: '1px solid #e5e7eb' }}>
-                  <strong>Regla 60-30-10:</strong> 60% Arena cálida / Blanco, 30% Esmeralda, 10% Ámbar.
-                  Reserva <span style={{ color: INK, fontWeight: 600 }}>Tinta Bosque</span> para texto y fondos oscuros de marca.
+                  <strong>Regla 60-30-10:</strong> 60% Arena cálida / Blanco, 30% Azul, 10% Ámbar.
+                  Reserva <span style={{ color: INK, fontWeight: 600 }}>Tinta Noche</span> para texto y fondos oscuros de marca.
                 </div>
               </CardContent>
             </Card>
@@ -617,7 +617,7 @@ export default function Home() {
 
           {/* Typography + voice */}
           <div className="grid md:grid-cols-2 gap-5 mt-6">
-            <Card className="border-emerald-100">
+            <Card className="border-blue-100">
               <CardHeader><CardTitle className="text-base">Tipografía</CardTitle></CardHeader>
               <CardContent className="space-y-3">
                 <div>
@@ -640,7 +640,7 @@ export default function Home() {
               </CardContent>
             </Card>
 
-            <Card className="border-emerald-100">
+            <Card className="border-blue-100">
               <CardHeader><CardTitle className="text-base">Tono de voz</CardTitle></CardHeader>
               <CardContent className="space-y-3 text-sm">
                 <VoiceRow do_="Cercano, venezolano, directo" dont="Corporativo o traducido del inglés" />
@@ -656,7 +656,7 @@ export default function Home() {
 
       {/* ===================== CLOSING / CTA ===================== */}
       <section className="mx-auto max-w-6xl w-full px-4 sm:px-6 py-14 sm:py-20">
-        <Card className="overflow-hidden border-0" style={{ background: `linear-gradient(135deg, ${EMERALD_DARK}, ${INK})` }}>
+        <Card className="overflow-hidden border-0" style={{ background: `linear-gradient(135deg, ${BLUE_DARK}, ${INK})` }}>
           <CardContent className="p-8 sm:p-12 text-center">
             <motion.div variants={fadeUp} initial="hidden" whileInView="show" viewport={{ once: true }}>
               <Sparkles className="size-8 mx-auto mb-4" style={{ color: AMBER_LIGHT }} />
@@ -725,10 +725,10 @@ function CanvasBlock({
       initial="hidden"
       whileInView="show"
       viewport={{ once: true, margin: '-40px' }}
-      className={`rounded-2xl border p-5 ${highlight ? 'border-emerald-300 bg-white ring-1 ring-emerald-200' : 'border-black/5 bg-white'}`}
+      className={`rounded-2xl border p-5 ${highlight ? 'border-blue-300 bg-white ring-1 ring-blue-200' : 'border-black/5 bg-white'}`}
     >
       <div className="flex items-center gap-2 mb-3">
-        <div className="size-8 rounded-lg grid place-items-center" style={{ background: highlight ? EMERALD : SAND, color: highlight ? 'white' : INK }}>
+        <div className="size-8 rounded-lg grid place-items-center" style={{ background: highlight ? BLUE : SAND, color: highlight ? 'white' : INK }}>
           <Icon className="size-4" />
         </div>
         <h3 className="font-semibold text-sm" style={{ color: INK }}>{title}</h3>
@@ -736,7 +736,7 @@ function CanvasBlock({
       <ul className="space-y-1.5">
         {items.map((it) => (
           <li key={it} className="flex items-start gap-1.5 text-xs text-muted-foreground leading-relaxed">
-            <Check className="size-3 mt-0.5 shrink-0" style={{ color: EMERALD }} />
+            <Check className="size-3 mt-0.5 shrink-0" style={{ color: BLUE }} />
             <span>{it}</span>
           </li>
         ))}
@@ -752,7 +752,7 @@ function PricingCard({
   features: string[]; cta: string; badge?: string; highlight?: boolean
 }) {
   return (
-    <Card className={`relative overflow-hidden ${highlight ? 'border-2 ring-2 ring-emerald-200' : 'border'}`} style={highlight ? { borderColor: EMERALD } : {}}>
+    <Card className={`relative overflow-hidden ${highlight ? 'border-2 ring-2 ring-blue-200' : 'border'}`} style={highlight ? { borderColor: BLUE } : {}}>
       {badge && (
         <div className="absolute top-0 right-0 px-3 py-1 text-[11px] font-bold text-amber-950 rounded-bl-xl" style={{ background: AMBER_LIGHT }}>
           {badge}
@@ -761,7 +761,7 @@ function PricingCard({
       <CardContent className="p-6 sm:p-7">
         <div className="flex items-center gap-2 mb-1">
           <span className="font-semibold" style={{ color: INK }}>{plan}</span>
-          {highlight && <Badge className="border-0 text-white" style={{ background: EMERALD }}>Recomendado</Badge>}
+          {highlight && <Badge className="border-0 text-white" style={{ background: BLUE }}>Recomendado</Badge>}
         </div>
         <div className="flex items-end gap-1.5 mt-2">
           <span className="text-4xl font-bold tracking-tight" style={{ color: INK }}>{price}</span>
@@ -772,12 +772,12 @@ function PricingCard({
         <ul className="space-y-2 mb-5">
           {features.map((f) => (
             <li key={f} className="flex items-start gap-2 text-sm">
-              <Check className="size-4 mt-0.5 shrink-0" style={{ color: EMERALD }} />
+              <Check className="size-4 mt-0.5 shrink-0" style={{ color: BLUE }} />
               <span>{f}</span>
             </li>
           ))}
         </ul>
-        <div className={`rounded-lg px-3 py-2.5 text-xs text-center font-medium ${highlight ? 'text-white' : 'text-muted-foreground'}`} style={highlight ? { background: EMERALD } : { background: SAND }}>
+        <div className={`rounded-lg px-3 py-2.5 text-xs text-center font-medium ${highlight ? 'text-white' : 'text-muted-foreground'}`} style={highlight ? { background: BLUE } : { background: SAND }}>
           {cta}
         </div>
       </CardContent>
@@ -808,7 +808,7 @@ function VoiceRow({ do_, dont }: { do_: string; dont: string }) {
   return (
     <div className="flex gap-3">
       <div className="flex-1 rounded-lg p-2.5" style={{ background: '#ecfdf5' }}>
-        <p className="text-[10px] font-bold uppercase tracking-wide text-emerald-700 mb-0.5">Sí</p>
+        <p className="text-[10px] font-bold uppercase tracking-wide text-blue-700 mb-0.5">Sí</p>
         <p className="text-xs text-foreground">{do_}</p>
       </div>
       <div className="flex-1 rounded-lg p-2.5" style={{ background: '#fff7ed' }}>
