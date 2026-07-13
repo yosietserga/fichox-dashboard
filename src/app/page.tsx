@@ -2,14 +2,15 @@
 
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Briefcase, BookOpen, Megaphone, Cog } from 'lucide-react'
+import { Briefcase, BookOpen, Megaphone, Cog, Zap } from 'lucide-react'
 import { BusinessPlanView } from '@/components/business-plan-view'
 import { BrandingManualView } from '@/components/branding-manual-view'
 import { MarketingPlanView } from '@/components/marketing-plan-view'
 import { OperationalPlanView } from '@/components/operational-plan-view'
+import { AutomationPlanView } from '@/components/automation-plan-view'
 
 export default function Home() {
-  const [tab, setTab] = useState<'plan' | 'brand' | 'mkt' | 'ops'>('ops')
+  const [tab, setTab] = useState<'plan' | 'brand' | 'mkt' | 'ops' | 'auto'>('auto')
 
   return (
     <div className="min-h-screen flex flex-col bg-white">
@@ -60,6 +61,17 @@ export default function Home() {
             <Cog className="size-3.5" />
             Plan Operativo
           </button>
+          <button
+            onClick={() => setTab('auto')}
+            className={`inline-flex items-center gap-1.5 px-3 sm:px-4 py-1.5 rounded-full text-xs sm:text-sm font-medium transition-all ${
+              tab === 'auto'
+                ? 'bg-blue-600 text-white shadow-sm'
+                : 'text-muted-foreground hover:text-foreground hover:bg-blue-50'
+            }`}
+          >
+            <Zap className="size-3.5" />
+            Plan de Automatización
+          </button>
         </div>
       </div>
 
@@ -72,7 +84,7 @@ export default function Home() {
           transition={{ duration: 0.2 }}
           className="flex-1"
         >
-          {tab === 'plan' ? <BusinessPlanView /> : tab === 'brand' ? <BrandingManualView /> : tab === 'mkt' ? <MarketingPlanView /> : <OperationalPlanView />}
+          {tab === 'plan' ? <BusinessPlanView /> : tab === 'brand' ? <BrandingManualView /> : tab === 'mkt' ? <MarketingPlanView /> : tab === 'ops' ? <OperationalPlanView /> : <AutomationPlanView />}
         </motion.div>
       </AnimatePresence>
     </div>
