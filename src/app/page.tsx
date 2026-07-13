@@ -82,7 +82,7 @@ export default function Home() {
       <header className="sticky top-0 z-50 border-b border-emerald-100/70 bg-white/85 backdrop-blur-md">
         <div className="mx-auto max-w-6xl px-4 sm:px-6 h-14 sm:h-16 flex items-center justify-between">
           <a href="#top" className="flex items-center gap-2.5">
-            <img src={BRAND.logo} alt="Logo SanHogar" className="size-8 sm:size-9 rounded-xl object-cover ring-1 ring-emerald-200" />
+            <img src={BRAND.logo} alt="Logo FichoX" className="size-8 sm:size-9 rounded-xl object-cover ring-1 ring-emerald-200" />
             <div className="leading-tight">
               <p className="font-bold text-sm sm:text-base" style={{ color: INK }}>{BRAND.name}</p>
               <p className="text-[10px] sm:text-[11px] text-muted-foreground -mt-0.5">Plan de Negocio · {BRAND.platform}</p>
@@ -130,8 +130,8 @@ export default function Home() {
                 </span>
               </h1>
               <p className="mt-5 text-base sm:text-lg text-white/80 max-w-xl leading-relaxed">
-                {BRAND.promise} Una instancia <span className="font-semibold text-white">white-label</span> de la
-                plataforma {BRAND.platform}: inventario + ficha técnica + publicación a Instagram y MercadoLibre, todo desde el celular.
+                {BRAND.promise} Inventario + ficha técnica + publicación a Instagram y
+                MercadoLibre, todo desde el celular.
               </p>
 
               <div className="mt-7 flex flex-wrap gap-3">
@@ -178,7 +178,7 @@ export default function Home() {
           <div className="mx-auto max-w-6xl px-4 sm:px-6 py-3 flex flex-wrap items-center gap-x-6 gap-y-1.5 text-xs text-white/70">
             <span className="flex items-center gap-1.5"><Building2 className="size-3.5" /> Jurisdicción: {BRAND.jurisdiction}</span>
             <span className="flex items-center gap-1.5"><ShieldCheck className="size-3.5" /> No requiere licencia VASP</span>
-            <span className="flex items-center gap-1.5"><Globe2 className="size-3.5" /> Basado en código real de <span className="font-mono text-white/90">yosietserga/sanhogar</span></span>
+            <span className="flex items-center gap-1.5"><Globe2 className="size-3.5" /> Basado en código real de <span className="font-mono text-white/90">yosietserga/fichox</span></span>
           </div>
         </div>
       </section>
@@ -188,7 +188,7 @@ export default function Home() {
         <SectionTitle
           kicker="Resumen ejecutivo"
           title="Un producto que nace del código, no de un slide"
-          desc="SanHogar es la instancia white-label de Fichox: una app mobile-first que convierte una foto en una ficha técnica vendible. El producto YA está construido — este plan define cómo monetizarlo y escalarlo."
+          desc="FichoX es una app mobile-first que convierte una foto en una ficha técnica vendible. El producto YA está construido — este plan define cómo monetizarlo y escalarlo."
         />
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
           <Stat icon={Users} label="Cliente objetivo" value="Revendedores VE/LATAM" sub="Comerciantes de Instagram + MercadoLibre" />
@@ -206,7 +206,7 @@ export default function Home() {
               <div className="text-sm leading-relaxed text-muted-foreground">
                 <span className="font-semibold text-foreground">La tesis:</span> el comerciante venezolano ya vende por
                 Instagram y MercadoLibre, pero pierde horas escribiendo descripciones, convirtiendo precios
-                USD/Bs y limpiando fotos. SanHogar elimina ese trabajo con IA en el celular, cobra en USDT
+                USD/Bs y limpiando fotos. FichoX elimina ese trabajo con IA en el celular, cobra en USDT
                 (sin tarjetas ni fronteras) y ofrece <span className="font-semibold text-foreground">márgenes del {(GROSS_MARGIN * 100).toFixed(0)}%</span>
                 con un costo variable por cliente de solo ${FINANCE.variableCostPerCustomer}/mes. Con {BREAKEVEN_CUSTOMERS} clientes
                 pagando, el negocio cubre todos sus costos operativos mensuales.
@@ -559,7 +559,7 @@ export default function Home() {
                 </div>
                 <div className="p-5">
                   <h3 className="font-bold text-lg" style={{ color: INK }}>{BRAND.name}</h3>
-                  <p className="text-sm text-muted-foreground mt-1">Marca del producto · instancia white-label de {BRAND.platform}</p>
+                  <p className="text-sm text-muted-foreground mt-1">Marca del producto · plataforma {BRAND.platform}</p>
                   <div className="mt-4 space-y-2 text-sm">
                     <ConceptRow label="Forma" value="Techo/hogar + etiqueta de precio + chispa IA" />
                     <ConceptRow label="Concepto" value="“Un hogar digital para tu inventario”" />
@@ -686,10 +686,10 @@ export default function Home() {
         <div className="mx-auto max-w-6xl px-4 sm:px-6 py-8">
           <div className="flex flex-col sm:flex-row items-center justify-between gap-4">
             <div className="flex items-center gap-2.5">
-              <img src={BRAND.logo} alt="Logo SanHogar" className="size-8 rounded-lg object-cover ring-1 ring-white/20" />
+              <img src={BRAND.logo} alt="Logo FichoX" className="size-8 rounded-lg object-cover ring-1 ring-white/20" />
               <div className="text-white/80 text-sm">
                 <p className="font-semibold text-white">{BRAND.name} · Plan de negocio</p>
-                <p className="text-xs text-white/50">Generado del análisis de código de yosietserga/sanhogar</p>
+                <p className="text-xs text-white/50">Generado del análisis de código de yosietserga/fichox</p>
               </div>
             </div>
             <div className="flex flex-wrap items-center gap-x-5 gap-y-2 text-xs text-white/50">

@@ -1,19 +1,19 @@
 // ============================================================================
-// SanHogar — Business Model, Financials & Marketing Data
-// Derived from actual source-code analysis of github.com/yosietserga/sanhogar
-// (the "Fichox" white-label platform). All pricing comes from
-// /api/subscription/route.ts and LEGAL.md; cost estimates are modeled.
+// FichoX — Business Model, Financials & Marketing Data
+// Derived from actual source-code analysis of github.com/yosietserga/fichox
+// All pricing comes from /api/subscription/route.ts and LEGAL.md;
+// cost estimates are modeled.
 // ============================================================================
 
 export const BRAND = {
-  name: "SanHogar",
+  name: "FichoX",
   platform: "Fichox",
   tagline: "Inventario inteligente para comerciantes venezolanos / LATAM",
   promise:
     "Convierte una foto de tu producto en una ficha técnica vendible en ~30 segundos — sin escribir.",
   founded: "2025",
   jurisdiction: "Panamá (crypto-friendly, sin licencia VASP)",
-  logo: "/sanhogar-logo.png",
+  logo: "/fichox-logo.png",
 };
 
 export const PALETTE = [
@@ -43,7 +43,7 @@ export const FINANCE = {
   fixedCosts: {
     hosting: 20, // Railway / Render (Node persistente para jobs de IA)
     database: 10, // Turso / Neon Postgres
-    domain: 1, // sanhogar.app
+    domain: 1, // fichox.app
     email: 5, // Resend transaccional
     monitoring: 10, // Sentry + uptime
     operator: 400, // Founder/operator LATAM (part-time)
@@ -262,7 +262,7 @@ export const MARKETING_CHANNELS = [
     channel: "Grupos WhatsApp",
     icon: "MessageCircle",
     tactic:
-      "Ingreso a 40 grupos de revendedores VE/CO. Aporte de valor (plantillas de caption gratis) + mención sutil de SanHogar. Sin spam.",
+      "Ingreso a 40 grupos de revendedores VE/CO. Aporte de valor (plantillas de caption gratis) + mención sutil de FichoX. Sin spam.",
     budget: 0,
     cpl: 0,
     share: 0.2,

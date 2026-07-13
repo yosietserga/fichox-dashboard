@@ -14,22 +14,22 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "SanHogar — Plan de Negocio · Fichox",
-  description: "Modelo de negocio, plan de marketing, curva de ROI y meta de clientes para breakeven de SanHogar — inventario inteligente con IA para comerciantes venezolanos/LATAM.",
-  keywords: ["SanHogar", "Fichox", "SaaS", "LATAM", "Venezuela", "IA", "MercadoLibre", "Instagram", "USDT", "plan de negocio"],
-  authors: [{ name: "SanHogar" }],
+  title: "FichoX — Plan de Negocio",
+  description: "Modelo de negocio, plan de marketing, curva de ROI y meta de clientes para breakeven de FichoX — inventario inteligente con IA para comerciantes venezolanos/LATAM.",
+  keywords: ["FichoX", "Fichox", "SaaS", "LATAM", "Venezuela", "IA", "MercadoLibre", "Instagram", "USDT", "plan de negocio"],
+  authors: [{ name: "FichoX" }],
   icons: {
-    icon: "/sanhogar-logo.png",
+    icon: "/fichox-logo.png",
   },
   openGraph: {
-    title: "SanHogar — Plan de Negocio",
+    title: "FichoX — Plan de Negocio",
     description: "Modelo de negocio, marketing, ROI y breakeven para comerciantes LATAM",
-    siteName: "SanHogar",
+    siteName: "FichoX",
     type: "website",
   },
   twitter: {
     card: "summary_large_image",
-    title: "SanHogar — Plan de Negocio",
+    title: "FichoX — Plan de Negocio",
     description: "Modelo de negocio, marketing, ROI y breakeven para comerciantes LATAM",
   },
 };
