@@ -2,16 +2,17 @@
 
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Briefcase, BookOpen, Megaphone, Cog, Zap, Landmark } from 'lucide-react'
+import { Briefcase, BookOpen, Megaphone, Cog, Zap, Landmark, Library } from 'lucide-react'
 import { BusinessPlanView } from '@/components/business-plan-view'
 import { BrandingManualView } from '@/components/branding-manual-view'
 import { MarketingPlanView } from '@/components/marketing-plan-view'
 import { OperationalPlanView } from '@/components/operational-plan-view'
 import { AutomationPlanView } from '@/components/automation-plan-view'
 import { FinancePlanView } from '@/components/finance-plan-view'
+import { DocumentationPlanView } from '@/components/documentation-plan-view'
 
 export default function Home() {
-  const [tab, setTab] = useState<'plan' | 'brand' | 'mkt' | 'ops' | 'auto' | 'fin'>('fin')
+  const [tab, setTab] = useState<'plan' | 'brand' | 'mkt' | 'ops' | 'auto' | 'fin' | 'docs'>('docs')
 
   return (
     <div className="min-h-screen flex flex-col bg-white">
@@ -84,6 +85,17 @@ export default function Home() {
             <Landmark className="size-3.5" />
             Plan Financiero & Alianzas
           </button>
+          <button
+            onClick={() => setTab('docs')}
+            className={`inline-flex items-center gap-1.5 px-3 sm:px-4 py-1.5 rounded-full text-xs sm:text-sm font-medium transition-all ${
+              tab === 'docs'
+                ? 'bg-blue-600 text-white shadow-sm'
+                : 'text-muted-foreground hover:text-foreground hover:bg-blue-50'
+            }`}
+          >
+            <Library className="size-3.5" />
+            Plan de Documentación
+          </button>
         </div>
       </div>
 
@@ -96,7 +108,7 @@ export default function Home() {
           transition={{ duration: 0.2 }}
           className="flex-1"
         >
-          {tab === 'plan' ? <BusinessPlanView /> : tab === 'brand' ? <BrandingManualView /> : tab === 'mkt' ? <MarketingPlanView /> : tab === 'ops' ? <OperationalPlanView /> : tab === 'auto' ? <AutomationPlanView /> : <FinancePlanView />}
+          {tab === 'plan' ? <BusinessPlanView /> : tab === 'brand' ? <BrandingManualView /> : tab === 'mkt' ? <MarketingPlanView /> : tab === 'ops' ? <OperationalPlanView /> : tab === 'auto' ? <AutomationPlanView /> : tab === 'fin' ? <FinancePlanView /> : <DocumentationPlanView />}
         </motion.div>
       </AnimatePresence>
     </div>
