@@ -2,13 +2,14 @@
 
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Briefcase, BookOpen, Megaphone } from 'lucide-react'
+import { Briefcase, BookOpen, Megaphone, Cog } from 'lucide-react'
 import { BusinessPlanView } from '@/components/business-plan-view'
 import { BrandingManualView } from '@/components/branding-manual-view'
 import { MarketingPlanView } from '@/components/marketing-plan-view'
+import { OperationalPlanView } from '@/components/operational-plan-view'
 
 export default function Home() {
-  const [tab, setTab] = useState<'plan' | 'brand' | 'mkt'>('mkt')
+  const [tab, setTab] = useState<'plan' | 'brand' | 'mkt' | 'ops'>('ops')
 
   return (
     <div className="min-h-screen flex flex-col bg-white">
@@ -48,6 +49,17 @@ export default function Home() {
             <Megaphone className="size-3.5" />
             Plan de Marketing
           </button>
+          <button
+            onClick={() => setTab('ops')}
+            className={`inline-flex items-center gap-1.5 px-3 sm:px-4 py-1.5 rounded-full text-xs sm:text-sm font-medium transition-all ${
+              tab === 'ops'
+                ? 'bg-blue-600 text-white shadow-sm'
+                : 'text-muted-foreground hover:text-foreground hover:bg-blue-50'
+            }`}
+          >
+            <Cog className="size-3.5" />
+            Plan Operativo
+          </button>
         </div>
       </div>
 
@@ -60,7 +72,7 @@ export default function Home() {
           transition={{ duration: 0.2 }}
           className="flex-1"
         >
-          {tab === 'plan' ? <BusinessPlanView /> : tab === 'brand' ? <BrandingManualView /> : <MarketingPlanView />}
+          {tab === 'plan' ? <BusinessPlanView /> : tab === 'brand' ? <BrandingManualView /> : tab === 'mkt' ? <MarketingPlanView /> : <OperationalPlanView />}
         </motion.div>
       </AnimatePresence>
     </div>
