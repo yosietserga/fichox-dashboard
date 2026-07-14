@@ -28,11 +28,12 @@ export const PALETTE = [
 ];
 
 // ---------------------------------------------------------------------------
-// PRICING  (from src/app/api/subscription/route.ts + LEGAL.md)
+// PRICING  (current tiers)
 // ---------------------------------------------------------------------------
 export const PRICING = {
-  monthly: { price: 80, currency: "USDT", network: "BSC (BEP-20)", days: 30 },
-  annual: { price: 250, currency: "USDT", network: "BSC (BEP-20)", days: 365, savings: 110 },
+  monthly: { price: 55, currency: "USDT", network: "BSC (BEP-20)", days: 30 },
+  annual: { price: 399, currency: "USDT", network: "BSC (BEP-20)", days: 365, savings: 261 },
+  lifetime: { price: 499, currency: "USDT", network: "BSC (BEP-20)", days: 1825, savings: 0 }, // 5 años máx
 };
 
 // ---------------------------------------------------------------------------
@@ -52,19 +53,20 @@ export const FINANCE = {
     misc: 54,
   },
   // Per-customer monthly variable cost
-  variableCostPerCustomer: 8, // z-ai SDK (VLM+ASR+LLM+image-edit) + storage
-  // Blended ARPU — 55% mensual @ $80, 45% anual ($250/12 = $20.83)
-  monthlyShare: 0.55,
-  annualShare: 0.45,
+  variableCostPerCustomer: 8.5, // z-ai SDK (VLM+ASR+LLM+image-edit) + storage + reward verification VLM
+  // Blended ARPU — 45% mensual @ $55, 50% anual ($399/12 = $33.25), 5% lifetime ($499/60 = $8.32)
+  monthlyShare: 0.45,
+  annualShare: 0.50,
+  lifetimeShare: 0.05,
   get arpu() {
-    return this.monthlyShare * 80 + this.annualShare * (250 / 12);
+    return this.monthlyShare * 55 + this.annualShare * (399 / 12) + this.lifetimeShare * (499 / 60);
   },
-  // Customer acquisition cost (blended)
-  cac: 35,
-  // Churn
-  monthlyChurn: 0.08,
+  // Customer acquisition cost (blended) — higher due to less viral in base case
+  cac: 38,
+  // Churn — slightly higher due to $55/mo friction
+  monthlyChurn: 0.10,
   // Initial seed investment
-  seed: 3000, // Logo + constitución Panamá (~$3k) + bootstrap dev
+  seed: 5000, // Logo + constitución Panamá (~$3k) + bootstrap dev + runway buffer
 };
 
 export const TOTAL_FIXED =
@@ -78,18 +80,18 @@ export const TOTAL_FIXED =
   FINANCE.fixedCosts.ads +
   FINANCE.fixedCosts.misc;
 
-export const CONTRIBUTION_MARGIN = FINANCE.arpu - FINANCE.variableCostPerCustomer; // ~45.37
-export const BREAKEVEN_CUSTOMERS = Math.ceil(TOTAL_FIXED / CONTRIBUTION_MARGIN); // ~17
-export const SAFE_BUFFER_CUSTOMERS = Math.ceil(BREAKEVEN_CUSTOMERS * 1.5); // ~25
-export const PAYBACK_MONTHS = FINANCE.cac / CONTRIBUTION_MARGIN; // ~0.77
-export const AVG_LIFETIME_MONTHS = 1 / FINANCE.monthlyChurn; // 12.5
-export const LTV = CONTRIBUTION_MARGIN * AVG_LIFETIME_MONTHS; // ~567
-export const LTV_CAC = LTV / FINANCE.cac; // ~16:1
-export const GROSS_MARGIN = CONTRIBUTION_MARGIN / FINANCE.arpu; // ~85%
+export const CONTRIBUTION_MARGIN = FINANCE.arpu - FINANCE.variableCostPerCustomer; // ~33.29
+export const BREAKEVEN_CUSTOMERS = Math.ceil(TOTAL_FIXED / CONTRIBUTION_MARGIN); // ~23
+export const SAFE_BUFFER_CUSTOMERS = Math.ceil(BREAKEVEN_CUSTOMERS * 1.5); // ~35
+export const PAYBACK_MONTHS = FINANCE.cac / CONTRIBUTION_MARGIN; // ~1.14
+export const AVG_LIFETIME_MONTHS = 1 / FINANCE.monthlyChurn; // 10
+export const LTV = CONTRIBUTION_MARGIN * AVG_LIFETIME_MONTHS; // ~333
+export const LTV_CAC = LTV / FINANCE.cac; // ~8.8
+export const GROSS_MARGIN = CONTRIBUTION_MARGIN / FINANCE.arpu; // ~80%
 
 // ---------------------------------------------------------------------------
 // 12-MONTH GROWTH PROJECTION
-// Net customer growth blends new acquisition + 8% monthly churn.
+// Net customer growth blends new acquisition + 10% monthly churn (pragmatic scenario).
 // ---------------------------------------------------------------------------
 export interface MonthRow {
   month: number;
@@ -102,12 +104,12 @@ export interface MonthRow {
   acquisitionCost: number;
   totalCosts: number;
   netProfit: number;
-  cumulativeNet: number; // incl. seed as -3000 at month 0
+  cumulativeNet: number; // incl. seed as -5000 at month 0
   roi: number; // cumulativeNet / seed invested-to-date
   margin: number; // netProfit / revenue
 }
 
-const CUSTOMER_TRAJECTORY = [6, 12, 22, 34, 48, 65, 84, 104, 125, 146, 168, 190];
+const CUSTOMER_TRAJECTORY = [5, 10, 18, 28, 40, 54, 70, 88, 105, 122, 140, 158];
 const MONTH_LABELS = [
   "M1", "M2", "M3", "M4", "M5", "M6",
   "M7", "M8", "M9", "M10", "M11", "M12",
@@ -197,9 +199,11 @@ export const CANVAS = {
     "Paywall con período de gracia de 5 días",
   ],
   revenue: [
-    "Suscripción mensual — $80 USDT / 30 días",
-    "Suscripción anual — $250 USDT / 365 días (ahorra $110)",
-    "White-label — resellers re-marcan la app (mismo precio)",
+    "Trial freemium — $0 / 7 días (preview de todas las features)",
+    "Suscripción mensual — $55 USDT / 30 días",
+    "Suscripción anual — $399 USDT / 365 días (ahorra $261)",
+    "Lifetime — $499 USDT / 5 años máx (primeros 50, escasez)",
+    "White-label — resellers re-marcan la app (mismo pricing)",
     "Sin auto-cargo · sin tarjetas · sin comisiones",
   ],
   resources: [

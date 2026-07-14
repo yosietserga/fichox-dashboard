@@ -192,7 +192,7 @@ export function BusinessPlanView() {
         />
         <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
           <Stat icon={Users} label="Cliente objetivo" value="Revendedores VE/LATAM" sub="Comerciantes de Instagram + MercadoLibre" />
-          <Stat icon={DollarSign} label="ARPU mensual blendado" value={`$${FINANCE.arpu.toFixed(2)}`} sub="55% mensual · 45% anual" accent="amber" />
+          <Stat icon={DollarSign} label="ARPU mensual blendado" value={`$${FINANCE.arpu.toFixed(2)}`} sub="45% mens · 50% anual · 5% life" accent="amber" />
           <Stat icon={Target} label="Meta de breakeven" value={`${BREAKEVEN_CUSTOMERS} clientes`} sub={`Búfer seguro: ${SAFE_BUFFER_CUSTOMERS} clientes`} />
           <Stat icon={TrendingUp} label="Breakeven acumulado" value={`Mes ${CUMULATIVE_BREAKEVEN_MONTH}`} sub={`Operativo desde mes ${OPERATING_BREAKEVEN_MONTH}`} />
         </div>
@@ -240,8 +240,16 @@ export function BusinessPlanView() {
 
       {/* ===================== PRICING ===================== */}
       <section className="mx-auto max-w-6xl w-full px-4 sm:px-6 py-14 sm:py-20">
-        <SectionTitle kicker="Modelo de ingresos" title="Suscripción SaaS en USDT" desc="Sin tarjetas, sin fronteras, sin comisiones. Pago on-chain en BSC, verificación automática vía BSCscan. Extraído de /api/subscription/route.ts." />
-        <div className="grid md:grid-cols-2 gap-5">
+        <SectionTitle kicker="Modelo de ingresos" title="Suscripción SaaS en USDT" desc="Sin tarjetas, sin fronteras, sin comisiones. Pago on-chain en BSC, verificación automática vía BSCscan. Trial freemium + 3 tiers de pago." />
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <PricingCard
+            plan="Trial"
+            price="$0"
+            unit="7 días freemium"
+            network="Sin pago"
+            features={['Preview de todas las features', 'Token en Ajustes → Licencia demo', 'No reutilizable', 'Después: subscribe o gana reward days']}
+            cta="Para probar"
+          />
           <PricingCard
             plan="Mensual"
             price={`$${PRICING.monthly.price}`}
@@ -260,9 +268,18 @@ export function BusinessPlanView() {
             cta="Recomendado · mejora ARPU"
             highlight
           />
+          <PricingCard
+            plan="Lifetime"
+            price={`$${PRICING.lifetime.price}`}
+            unit="USDT / 5 años máx"
+            network={PRICING.lifetime.network}
+            badge="Solo primeros 50"
+            features={['All features 5 años', 'Pago único', 'Escasez: solo 50 cupos', 'Evangelista permanente', 'No renovable']}
+            cta="Escasez · primeros 50"
+          />
         </div>
         <p className="text-center text-xs text-muted-foreground mt-4">
-          Sin auto-cargo · Período de gracia de 5 días · Datos preservados 30 días post-vencimiento (según LEGAL.md)
+          Sin auto-cargo · Período de gracia de 5 días · Datos preservados 30 días post-vencimiento · Lifetime limitado a 5 años
         </p>
       </section>
 
@@ -338,11 +355,11 @@ export function BusinessPlanView() {
       <section id="finanzas" className="mx-auto max-w-6xl w-full px-4 sm:px-6 py-14 sm:py-20">
         <SectionTitle kicker="Unit economics" title="Los números por cliente" desc="Modelo derivado del pricing real del código y estimaciones de costo de IA (z-ai SDK) por captura." />
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-          <Stat icon={DollarSign} label="ARPU mensual" value={`$${FINANCE.arpu.toFixed(2)}`} sub="Blendado 55/45" />
+          <Stat icon={DollarSign} label="ARPU mensual" value={`$${FINANCE.arpu.toFixed(2)}`} sub="Blendado 45/50/5" />
           <Stat icon={Wrench} label="Costo variable" value={`$${FINANCE.variableCostPerCustomer}`} sub="IA + storage / cliente / mes" accent="amber" />
           <Stat icon={Percent} label="Margen de contribución" value={`$${CONTRIBUTION_MARGIN.toFixed(2)}`} sub={`${(GROSS_MARGIN * 100).toFixed(0)}% margen bruto`} />
           <Stat icon={Users} label="CAC blendado" value={`$${FINANCE.cac}`} sub="Meta Ads + orgánico" accent="amber" />
-          <Stat icon={Gauge} label="Payback CAC" value={`${PAYBACK_MONTHS.toFixed(2)} meses`} sub="~23 días para recuperar adquisición" />
+          <Stat icon={Gauge} label="Payback CAC" value={`${PAYBACK_MONTHS.toFixed(2)} meses`} sub="~34 días para recuperar adquisición" />
           <Stat icon={TrendingUp} label="LTV por cliente" value={`$${LTV.toFixed(0)}`} sub={`Vida media ${AVG_LIFETIME_MONTHS.toFixed(1)} meses`} />
           <Stat icon={Star} label="LTV : CAC" value={`${LTV_CAC.toFixed(0)}:1`} sub="Sano si > 3:1" />
           <Stat icon={Banknote} label="Costos fijos / mes" value={`$${TOTAL_FIXED}`} sub="Hosting + operador + ads baseline" accent="amber" />
@@ -634,7 +651,7 @@ export function BusinessPlanView() {
                 <Separator />
                 <div>
                   <p className="text-xs text-muted-foreground uppercase tracking-wide mb-1">Datos / Precios</p>
-                  <p className="text-base font-mono">Geist Mono — $80.00 USDT</p>
+                  <p className="text-base font-mono">Geist Mono — $55.00 USDT</p>
                   <p className="text-xs text-muted-foreground">Para precios, wallets, hashes y métricas</p>
                 </div>
               </CardContent>

@@ -359,7 +359,7 @@ export function BrandingManualView() {
                   <Badge key={w} variant="outline" className="text-[11px]">{w}</Badge>
                 ))}
               </div>
-              <p className="mt-4 text-3xl font-mono" style={{ color: BLUE }}>$80.00 USDT</p>
+              <p className="mt-4 text-3xl font-mono" style={{ color: BLUE }}>$55.00 USDT</p>
             </CardContent>
           </Card>
         </div>
@@ -531,7 +531,7 @@ export function BrandingManualView() {
                   <span className="col-span-2 text-right">Total</span>
                 </div>
                 {[
-                  ['Suscripción FichoX anual', '1', '$250.00', '$250.00'],
+                  ['Suscripción FichoX anual', '1', '$399.00', '$399.00'],
                   ['Setup white-label', '1', '$0.00', '$0.00'],
                 ].map((row, i) => (
                   <div key={i} className="grid grid-cols-12 gap-2 text-[10px] py-2 border-b border-dashed" style={{ color: INK }}>
@@ -544,7 +544,7 @@ export function BrandingManualView() {
                 <div className="flex justify-end mt-3">
                   <div className="text-right">
                     <p className="text-[10px] text-muted-foreground">Total USD</p>
-                    <p className="text-2xl font-bold font-mono" style={{ color: BLUE }}>$250.00</p>
+                    <p className="text-2xl font-bold font-mono" style={{ color: BLUE }}>$399.00</p>
                     <p className="text-[9px] text-muted-foreground">Equivalente en Bs al BCV del día</p>
                   </div>
                 </div>

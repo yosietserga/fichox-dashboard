@@ -321,7 +321,7 @@ export const RISK_SCENARIOS: RiskScenario[] = [
   {
     cluster: "Onboarding y follow-up de clientes",
     automations: "5-email sequence, NPS auto-trigger, renewal reminders",
-    ifNotDone: "Onboarding inconsistente: cada cliente recibe info distinta. 30% no activa producto en 1ra semana. Churn +20%. Renewals olvidadas = pérdida $80/cliente.",
+    ifNotDone: "Onboarding inconsistente: cada cliente recibe info distinta. 30% no activa producto en 1ra semana. Churn +20%. Renewals olvidadas = pérdida $55/cliente.",
     ifDone: "Onboarding estandarizado, 100% reciben misma secuencia. Activación +40%. Renewals 95% on-time. NPS capturado automáticamente a 30 días.",
     ifDoneThenStopped: "Emails se envían a destiempo o dejan de enviarse. Clientes nuevos no reciben onboarding → activación cae. Mailchimp desconectado = silencioso.",
     ifFailsTechnically: "Si Mailchimp cae: emails no se envían. MITIGACIÓN: webhook a Resend como backup. Alerta si 0 emails enviados en 24h con nuevos clientes activos.",
@@ -341,7 +341,7 @@ export const RISK_SCENARIOS: RiskScenario[] = [
   {
     cluster: "Detección de churn y reactivación",
     automations: "Churn alert IA, reactivation email sequence, WhatsApp reactivation",
-    ifNotDone: "Churn se detecta cuando el cliente ya no paga = demasiado tarde. Perdemos $80-250 por cliente sin advertirlo. Churn mensual 8% sin mitigación.",
+    ifNotDone: "Churn se detecta cuando el cliente ya no paga = demasiado tarde. Perdemos $55-399 por cliente sin advertirlo. Churn mensual 10% sin mitigación.",
     ifDone: "IA detecta patrón de bajo uso 7 días antes. Reactivación automática + alerta a CS. Churn baja a 4-5%. Salva ~2-3 clientes/mes = $160-750/mes retenidos.",
     ifDoneThenStopped: "Alertas dejan de funcionar. Churn vuelve silenciosamente a 8%. No se nota hasta el reporte mensual. Para entonces, 3-5 clientes perdidos.",
     ifFailsTechnically: "Si IA no analiza (API down): sin alertas. MITIGACIÓN: regla simple paralela (no captura en 10 días → alerta). Menos inteligente pero funcional.",

@@ -123,7 +123,7 @@ export const BRAND_MANUAL = {
       { level: "H2 / Subtítulo", sample: "Plan de negocio", spec: "Geist Sans Semibold 600 · 22–28px", color: "#1e3a8a" },
       { level: "Cuerpo / Body", sample: "Convierte una foto en una ficha vendible.", spec: "Geist Sans Regular 400 · 14–16px · line-height 1.5", color: "#475569" },
       { level: "Caption / Meta", sample: "Hace 2 horas · 12 productos", spec: "Geist Sans Medium 500 · 11–12px · uppercase tracking 0.08em", color: "#475569" },
-      { level: "Dato / Precio", sample: "$80.00 USDT", spec: "Geist Mono Bold 700 · 14–18px", color: "#1d4ed8" },
+      { level: "Dato / Precio", sample: "$55.00 USDT", spec: "Geist Mono Bold 700 · 14–18px", color: "#1d4ed8" },
     ],
   },
 
