@@ -17,7 +17,6 @@ export const EXPO_ANALYSIS = {
 export const PRICING_COMPARISON = [
   { tier: "Trial", price: "$0 · 7 días", monthly: "$0", note: "Freemium con preview de todas las features" },
   { tier: "Mensual", price: "$55/mo", monthly: "$55.00", note: "Precio competitivo LATAM" },
-  { tier: "Trimestral", price: "$149/3mo", monthly: "$49.67", note: "Ahorro 10% vs mensual" },
   { tier: "Anual", price: "$399/yr", monthly: "$33.25", note: "Más popular · ahorro 40% vs mensual" },
   { tier: "Lifetime", price: "$499 once", monthly: "~$8.32", note: "Solo primeros 50 · máximo 5 años · escasez" },
 ]
@@ -82,10 +81,10 @@ export const MECHANICS_ANALYSIS = [
   {
     mechanic: "Pricing $55/mo (equilibrado)",
     type: "Adquisición",
-    howItWorks: "Mensual $55. Trimestral $149. Anual $399. Lifetime $499 (5 años).",
+    howItWorks: "Mensual $55. Anual $399. Lifetime $499 (5 años).",
     exponentialPotential: "Alto (volumen + margen)",
-    rationale: "$55/mo es ~18-20% del salario mínimo VE en USD = asequible para comerciante establecido. ARPU saludable ($35-47 blendado) mantiene márgenes del 75-80%. Compensa volumen con viralidad sin sacrificar rentabilidad.",
-    risk: "Fricción de precio para comerciante informal. Breakeven en 23-32 clientes.",
+    rationale: "$55/mo es ~18-20% del salario mínimo VE en USD = asequible para comerciante establecido. ARPU saludable ($34-46 blendado) mantiene márgenes del 75-80%. Compensa volumen con viralidad sin sacrificar rentabilidad.",
+    risk: "Fricción de precio para comerciante informal. Breakeven en 23-34 clientes.",
     metric: "ARPU blendado + volume growth",
   },
 ]
@@ -233,32 +232,32 @@ function buildScenario(
   }
 }
 
-// ARPU calculations per scenario (blend of tiers with $55/mo, $149/3mo, $399/yr, $499 lifetime)
-// Optimistic: 5% mensual, 15% trimestral, 75% anual, 5% lifetime = $35.40
-//   0.05×55 + 0.15×49.67 + 0.75×33.25 + 0.05×5.20 = 2.75 + 7.45 + 24.94 + 0.26 = 35.40
-// Pragmatic: 30% mensual, 35% trimestral, 30% anual, 5% lifetime = $44.12
-//   0.30×55 + 0.35×49.67 + 0.30×33.25 + 0.05×5.20 = 16.50 + 17.38 + 9.98 + 0.26 = 44.12
-// Pessimistic: 40% mensual, 30% trimestral, 30% anual, 0% lifetime = $46.88
-//   0.40×55 + 0.30×49.67 + 0.30×33.25 = 22.00 + 14.90 + 9.98 = 46.88
+// ARPU calculations per scenario (blend of tiers with $55/mo, $399/yr, $499 lifetime)
+// Optimistic: 10% mensual, 85% anual, 5% lifetime = $34.18
+//   0.10×55 + 0.85×33.25 + 0.05×8.32 = 5.50 + 28.26 + 0.42 = 34.18
+// Pragmatic: 45% mensual, 50% anual, 5% lifetime = $41.79
+//   0.45×55 + 0.50×33.25 + 0.05×8.32 = 24.75 + 16.63 + 0.42 = 41.79
+// Pessimistic: 60% mensual, 40% anual, 0% lifetime = $46.30
+//   0.60×55 + 0.40×33.25 = 33.00 + 13.30 = 46.30
 
 export const SCENARIOS: Scenario[] = [
   buildScenario(
     "optimistic", "Optimista", "🚀", "#059669",
     "Viral funciona + VE responde + expansión CO/EC rápida",
     [6, 14, 28, 48, 75, 110, 155, 205, 260, 320, 385, 450],
-    35.40, 0.05, 25, 0.50, 0.18,
+    34.18, 0.05, 25, 0.50, 0.18,
   ),
   buildScenario(
     "pragmatic", "Pragmática", "⚖️", "#1d4ed8",
     "Viral moderado + VE con fricción + CO lento",
     [5, 10, 18, 28, 40, 54, 70, 88, 105, 122, 140, 158],
-    44.12, 0.10, 38, 0.30, 0.12,
+    41.79, 0.10, 38, 0.30, 0.12,
   ),
   buildScenario(
     "pessimistic", "Pesimista", "⚠️", "#e11d48",
     "Viral débil + VE resistente + fraude referrals + apagones",
     [3, 5, 8, 11, 14, 17, 20, 23, 26, 29, 32, 35],
-    46.88, 0.18, 60, 0.12, 0.06,
+    46.30, 0.18, 60, 0.12, 0.06,
   ),
 ]
 
@@ -290,17 +289,17 @@ export const COMBINED_CUMULATIVE = SCENARIOS[0].months.map((_, i) => ({
 // SCENARIO COMPARISON SUMMARY
 // ---------------------------------------------------------------------------
 export const SCENARIO_COMPARISON = [
-  { metric: "ARPU mensual blendado", optimista: "$35.40", pragmatica: "$44.12", pesimista: "$46.88", note: "Mayor precio mensual = ARPU más alto en escenarios de menor conversión anual" },
+  { metric: "ARPU mensual blendado", optimista: "$34.18", pragmatica: "$41.79", pesimista: "$46.30", note: "Mayor precio mensual = ARPU más alto en escenarios de menor conversión anual" },
   { metric: "Churn mensual", optimista: "5%", pragmatica: "10%", pesimista: "18%", note: "VE churn alto por emigración + apagones" },
   { metric: "CAC blendado", optimista: "$25", pragmatica: "$38", pesimista: "$60", note: "Viral reduce CAC en optimista" },
   { metric: "Coeficiente viral K", optimista: "0.50", pragmatica: "0.30", pesimista: "0.12", note: "K>1 = exponencial real. Ningún escenario lo alcanza" },
   { metric: "Trial → paid conversión", optimista: "18%", pragmatica: "12%", pesimista: "6%", note: "VE ingreso limitado reduce conversión" },
   { metric: "Clientes mes 12", optimista: "450", pragmatica: "158", pesimista: "35", note: "Rango 13x entre extremos" },
-  { metric: "Breakeven operativo (clientes)", optimista: "32", pragmatica: "24", pesimista: "23", note: "ARPU alto baja breakeven significativamente" },
+  { metric: "Breakeven operativo (clientes)", optimista: "34", pragmatica: "26", pesimista: "23", note: "ARPU alto baja breakeven significativamente" },
   { metric: "Breakeven operativo (mes)", optimista: "M5", pragmatica: "M5", pesimista: "Nunca (12m)", note: "Pesimista no llega a breakeven" },
   { metric: "Breakeven acumulado (mes)", optimista: "M9", pragmatica: "M11", pesimista: "Nunca", note: "Recupera seed" },
-  { metric: "LTV por cliente", optimista: "$538", pragmatica: "$356", pesimista: "$213", note: "ARPU alto compensa churn" },
-  { metric: "LTV : CAC", optimista: "21.5:1", pragmatica: "9.4:1", pesimista: "3.6:1", note: "Todos los escenarios son sanos (>3:1)" },
+  { metric: "LTV por cliente", optimista: "$514", pragmatica: "$333", pesimista: "$210", note: "ARPU alto compensa churn" },
+  { metric: "LTV : CAC", optimista: "20.5:1", pragmatica: "8.8:1", pesimista: "3.5:1", note: "Todos los escenarios son sanos (>3:1)" },
   { metric: "Net profit acumulado Q3", optimista: "+$26K", pragmatica: "+$6.4K", pesimista: "-$11K", note: "Pesimista quema cash pero menos que con $29" },
 ]
 
@@ -311,8 +310,8 @@ export const PLAN_IMPACTS = [
   {
     plan: "1. Plan de Negocio",
     changes: [
-      "ARPU blendado $35-47 según mix de tiers",
-      "Breakeven en 23-32 clientes — muy alcanzable",
+      "ARPU blendado $34-46 según mix de tiers",
+      "Breakeven en 23-34 clientes — muy alcanzable",
       "Nuevas fuentes de revenue: Lifetime ($499 × 50 = $24,950 upfront)",
       "Reward days reemplazan potencial churn (engagement sin canibalizar)",
       "Modelo financiero re-proyectado con 3 escenarios y pricing $55",

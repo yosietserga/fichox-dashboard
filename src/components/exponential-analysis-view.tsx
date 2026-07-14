@@ -86,7 +86,7 @@ export function ExponentialAnalysisView() {
               <HeroStat value="3" label="Escenarios" />
               <HeroStat value="$55" label="Nuevo precio/mes" />
               <HeroStat value="K=0.30" label="Viral pragmático" />
-              <HeroStat value="23-32" label="Breakeven clientes" />
+              <HeroStat value="23-34" label="Breakeven clientes" />
             </div>
           </motion.div>
         </div>
@@ -97,7 +97,7 @@ export function ExponentialAnalysisView() {
         <SectionTitle
           kicker="Pricing"
           title="Tiers de suscripción"
-          desc="5 tiers: Trial freemium, mensual, trimestral, anual (más popular) y lifetime con escasez (primeros 50). Strategy: equilibrio volumen + margen con viralidad."
+          desc="4 tiers: Trial freemium, mensual, anual (más popular) y lifetime con escasez (primeros 50). Strategy: equilibrio volumen + margen con viralidad."
         />
 
         <Card className="border-blue-100 overflow-hidden mb-6">
@@ -133,8 +133,8 @@ export function ExponentialAnalysisView() {
             <div className="text-sm">
               <p className="font-semibold mb-1" style={{ color: INK }}>Insight clave del pricing</p>
               <p className="text-muted-foreground leading-relaxed">
-                ARPU blendado $35-47 según mix de tiers, manteniendo márgenes del 75-80%.
-                <strong style={{ color: INK }}> Breakeven en 23-32 clientes</strong> — muy alcanzable,
+                ARPU blendado $34-46 según mix de tiers, manteniendo márgenes del 75-80%.
+                <strong style={{ color: INK }}> Breakeven en 23-34 clientes</strong> — muy alcanzable,
                 y el trial + referrals pueden llevar ahí rápido si K {'>'} 0.25. Pricing $55 equilibra volumen y margen.
               </p>
             </div>
