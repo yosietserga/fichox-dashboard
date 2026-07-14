@@ -15,7 +15,7 @@ import { Card, CardContent, CardHeader, CardTitle, CardDescription } from '@/com
 import { Badge } from '@/components/ui/badge'
 import { Separator } from '@/components/ui/separator'
 import {
-  EXPO_ANALYSIS, PRICING_COMPARISON, MECHANICS_ANALYSIS, VIRAL_MODEL,
+  EXPO_ANALYSIS, PRICING_COMPARISON, PRICING_DISCLAIMER, MECHANICS_ANALYSIS, VIRAL_MODEL,
   VE_RISKS, SCENARIOS, COMBINED_CUSTOMER_TRAJECTORY, COMBINED_REVENUE,
   COMBINED_CUMULATIVE, SCENARIO_COMPARISON, PLAN_IMPACTS, RECOMMENDATIONS,
 } from '@/lib/exponential-data'
@@ -137,6 +137,17 @@ export function ExponentialAnalysisView() {
                 <strong style={{ color: INK }}> Breakeven en 23-32 clientes</strong> — muy alcanzable,
                 y el trial + referrals pueden llevar ahí rápido si K {'>'} 0.25. Pricing $55 equilibra volumen y margen.
               </p>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Disclaimer */}
+        <Card className="border-rose-200 mt-4" style={{ background: '#fff5f5' }}>
+          <CardContent className="p-4 flex items-start gap-3">
+            <AlertTriangle className="size-5 shrink-0 mt-0.5" style={{ color: ROSE }} />
+            <div className="text-sm">
+              <p className="font-semibold mb-1" style={{ color: INK }}>{PRICING_DISCLAIMER.title}</p>
+              <p className="text-xs text-muted-foreground leading-relaxed">{PRICING_DISCLAIMER.text}</p>
             </div>
           </CardContent>
         </Card>

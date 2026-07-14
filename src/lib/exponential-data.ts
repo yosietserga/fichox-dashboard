@@ -19,8 +19,16 @@ export const PRICING_COMPARISON = [
   { tier: "Mensual", price: "$55/mo", monthly: "$55.00", note: "Precio competitivo LATAM" },
   { tier: "Trimestral", price: "$149/3mo", monthly: "$49.67", note: "Ahorro 10% vs mensual" },
   { tier: "Anual", price: "$399/yr", monthly: "$33.25", note: "Más popular · ahorro 40% vs mensual" },
-  { tier: "Lifetime", price: "$499 once", monthly: "~$5.20", note: "Solo primeros 50 · escasez" },
+  { tier: "Lifetime", price: "$499 once", monthly: "~$8.32", note: "Solo primeros 50 · máximo 5 años · escasez" },
 ]
+
+// ---------------------------------------------------------------------------
+// DISCLAIMER — applies to ALL plans and calculations
+// ---------------------------------------------------------------------------
+export const PRICING_DISCLAIMER = {
+  title: "Aviso sobre precios y condiciones",
+  text: "Todos los planes y cálculos aquí presentados han sido proyectados basándose en los costos actuales de infraestructura, herramientas SaaS y tecnologías de inteligencia artificial (incluyendo pero no limitado a z-ai-web-dev-sdk, modelos VLM/LLM, image-edit y video-gen). Los proveedores de estos servicios pueden modificar sus precios en cualquier momento y sin previo aviso. Si dichos costos aumentan significativamente, FichoX no podrá mantener las condiciones de precio y features aquí descritas, y se verá en la necesidad de ajustarlas. Al continuar con la suscripción, el comerciante acepta esta condición y reconoce que las proyecciones son orientativas y están sujetas a la estabilidad del ecosistema tecnológico subyacente.",
+}
 
 // ---------------------------------------------------------------------------
 // NEW MECHANICS ANALYSIS
@@ -63,18 +71,18 @@ export const MECHANICS_ANALYSIS = [
     metric: "Feature unlock rate por tier",
   },
   {
-    mechanic: "Lifetime $499 (first 50 only)",
+    mechanic: "Lifetime $499 (first 50 only · 5 años)",
     type: "Monetización",
-    howItWorks: "Pago único $499 = all features forever. Limitado a primeros 50 clientes.",
+    howItWorks: "Pago único $499 = all features por un máximo de 5 años. Limitado a primeros 50 clientes.",
     exponentialPotential: "Bajo (pero estratégico)",
-    rationale: "Scarcity genera urgency. Captura early adopters high-LTV. $499 = ~$5/mo @ 8 años. Solo 50 → $24,950 upfront cash + 50 evangelistas permanentes.",
-    risk: "Canibaliza revenue si clientes high-LTV habrían pagado anual por años. Mitigación: solo 50, luego se retira.",
+    rationale: "Scarcity genera urgency. Captura early adopters high-LTV. $499 = ~$8.32/mo @ 5 años. Solo 50 → $24,950 upfront cash + 50 evangelistas por 5 años.",
+    risk: "Canibaliza revenue si clientes high-LTV habrían pagado anual por años. Mitigación: solo 50, luego se retira. Limitado a 5 años para acotar compromiso.",
     metric: "Lifetime tier sell-through rate",
   },
   {
     mechanic: "Pricing $55/mo (equilibrado)",
     type: "Adquisición",
-    howItWorks: "Mensual $55. Trimestral $149. Anual $399. Lifetime $499.",
+    howItWorks: "Mensual $55. Trimestral $149. Anual $399. Lifetime $499 (5 años).",
     exponentialPotential: "Alto (volumen + margen)",
     rationale: "$55/mo es ~18-20% del salario mínimo VE en USD = asequible para comerciante establecido. ARPU saludable ($35-47 blendado) mantiene márgenes del 75-80%. Compensa volumen con viralidad sin sacrificar rentabilidad.",
     risk: "Fricción de precio para comerciante informal. Breakeven en 23-32 clientes.",
