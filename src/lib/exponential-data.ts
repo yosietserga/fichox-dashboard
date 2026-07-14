@@ -43,13 +43,13 @@ export const MECHANICS_ANALYSIS = [
     metric: "Trial → paid conversion rate",
   },
   {
-    mechanic: "Referral code FICHOX-XXXXXX",
+    mechanic: "Referral code FICHOX-XXXXXX + dual bonus",
     type: "Viral",
-    howItWorks: "Merchant comparte código por WhatsApp. Nuevo merchant registra con código. Tras 3 días de uso → referrer +1 día. Tras 2 paying → unlock ALL features permanente.",
+    howItWorks: "Merchant comparte código via 5 plantillas un-clic (WhatsApp, IG, Facebook, Twitter, copy). Nuevo merchant registra con código. Invitado recibe +3 días de bienvenida al confirmar referido. Tras 3 días de uso → referrer +1 día.",
     exponentialPotential: "Muy alto",
-    rationale: "El unlock permanente por 2 referidos pagos es el motor viral. Incentivo alineado: referir 2 = ahorrar $399+/año. Cada paying user trae potencialmente 2 nuevos paying users.",
-    risk: "Fraude (autorreferencias, wallets múltiples). Mitigación: 1 wallet por device + KYC para unlock.",
-    metric: "Coeficiente viral K (invitations × conversion)",
+    rationale: "El dual-sided bonus (+3 días al invitado) es clave: reduce fricción de registro del invitee. Las 5 plantillas un-clic eliminan fricción de compartir. El incentivo está alineado: referir 3 pagos = unlock ALL features permanente (embajador silver).",
+    risk: "Fraude (autorreferencias, wallets múltiples). Mitigación: 1 wallet por device + KYC para unlock + device fingerprinting.",
+    metric: "Coeficiente viral K (target >0.9)",
   },
   {
     mechanic: "Rewards +1 día (review, share, WhatsApp)",
@@ -61,13 +61,22 @@ export const MECHANICS_ANALYSIS = [
     metric: "Reward actions per user per month",
   },
   {
-    mechanic: "Feature unlock system (4 features, 4 tiers)",
+    mechanic: "6 viral tiers escalados + feature unlocks",
     type: "Monetización",
-    howItWorks: "Priority chain: Subscription → 2 paid referrals → KYC → Trial preview → Locked. Features: cleanImages, enhanceHD, meliTrends, geoRecommend.",
+    howItWorks: "Tiers: 1 activo → +1día, 2 activos → +2 días, 5 activos → +5 días + cleanImages, 10 activos → +10 días + all 30 días, 1 pago → +3 días + enhanceHD + bronze, 3 pagos → unlock ALL permanente + silver. Gold (5 pagos) y Platinum (10 pagos) son badges.",
     exponentialPotential: "Alto",
-    rationale: "Crea camino de upgrade claro. Trial preview (amber nudge) muestra valor sin bloquear. Locked (30% opacity + lock) crea deseo. KYC tier añade verificación sin fricción de pago.",
-    risk: "Confusión de usuarios sobre qué desbloquea qué. Mitigación: dashboard 'Funciones desbloqueadas: X/4'.",
-    metric: "Feature unlock rate por tier",
+    rationale: "Escalado de recompensas mantiene motivación en cada etapa. Feature unlocks progresivos (cleanImages → enhanceHD → all) crean camino de upgrade claro sin paywall abrupto. Ambassador badges (bronze/silver/gold/platinum) añaden gamificación y status social.",
+    risk: "Complejidad de UX. Mitigación: dashboard 'Funciones desbloqueadas: X/4' + visualización de progresión de niveles.",
+    metric: "Tier upgrade rate + ambassador level distribution",
+  },
+  {
+    mechanic: "7 milestones auto-recompensados",
+    type: "Engagement",
+    howItWorks: "Auto-detectados y auto-recompensados: 1ra captura (+1d), 10 productos (+1d), 50 productos (+3d), 100 productos (+7d), 1ra publicación (+1d), 10 publicaciones (+1d), 1er referido (+1d). Celebración visual al lograrlos.",
+    exponentialPotential: "Medio-alto",
+    rationale: "Los milestones de captura/publicación incentivan uso activo del producto (no solo registro). +7 días por 100 productos es el mayor reward, alineando engagement profundo con retención. Las celebraciones crean momentos de delight que aumentan NPS y probabilidad de compartir.",
+    risk: "Auto-grant podría premiar uso superficial. Mitigación: thresholds altos (50, 100) + VLM ya verifica capturas reales.",
+    metric: "Milestone achievement rate + reward days granted per user",
   },
   {
     mechanic: "Lifetime $499 (first 50 only · 5 años)",
@@ -93,34 +102,119 @@ export const MECHANICS_ANALYSIS = [
 // VIRAL MATH — referral coefficient per scenario
 // ---------------------------------------------------------------------------
 export const VIRAL_MODEL = {
-  concept: "Cada paying user tiene incentivo de referir 2 paying users para unlock permanente. K = i × c (invitations × conversion rate).",
+  concept: "Cada paying user tiene incentivo de referir 3 paying users para unlock permanente (embajador silver). K = i × c (invitations × conversion rate). Target backend: K > 0.9.",
   scenarios: [
     {
       name: "Optimista",
       invitationsPerUser: 5,
-      conversionRate: 0.10,
-      k: 0.5,
-      interpretation: "Cada 10 users traen 5 nuevos via referrals. Crecimiento exponencial cercano.",
-      assumptions: ["Comunidad WhatsApp activa", "Incentivo unlock permanente funciona ($399+ ahorrado)", "Mercado CO/EC adopta rápido"],
+      conversionRate: 0.18,
+      k: 0.90,
+      interpretation: "Adopción completa del frontend: plantillas un-clic + dual bonus + milestones + celebraciones. K>0.9 alcanzado. Crecimiento exponencial real.",
+      assumptions: ["5 plantillas un-clic funcionan", "Dual bonus (+3 días invitee) activo", "Milestones + celebraciones implementados", "Mercado CO/EC adopta rápido"],
     },
     {
       name: "Pragmática",
-      invitationsPerUser: 3,
+      invitationsPerUser: 4,
       conversionRate: 0.10,
-      k: 0.30,
-      interpretation: "Cada 10 users traen 3 nuevos. Crecimiento acelerado pero lineal-ish.",
-      assumptions: ["Referidos funcionan moderadamente", "VE responde pero con fricción de precio", "Algo de fraude requiere mitigación"],
+      k: 0.40,
+      interpretation: "Mecánicas activas pero UX parcial. Plantillas un-clic + dual bonus sí, milestones/celebraciones no completos. Crecimiento acelerado.",
+      assumptions: ["Plantillas un-clic funcionan", "Dual bonus activo", "Celebraciones faltan o parciales", "VE responde con fricción de precio"],
     },
     {
       name: "Pesimista",
       invitationsPerUser: 2,
       conversionRate: 0.06,
       k: 0.12,
-      interpretation: "Cada 10 users traen 1.2 nuevos. Crecimiento mayormente paid acquisition.",
-      assumptions: ["Fraude autorreferencias reduce efectividad", "Mercado VE resistente a $55/mo", "WhatsApp API bloqueos intermitentes"],
+      interpretation: "Solo baseline sin mecánicas. Crecimiento mayormente paid acquisition. K cerca de 0.10-0.12.",
+      assumptions: ["UX incompleto (sin plantillas un-clic)", "Fraude autorreferencias reduce efectividad", "Mercado VE resistente a $55/mo", "WhatsApp API bloqueos intermitentes"],
     },
   ],
 }
+
+// ---------------------------------------------------------------------------
+// K PROJECTION BY STAGE — from backend cold run analysis
+// Target K>0.9 achievable with full frontend adoption
+// ---------------------------------------------------------------------------
+export const K_PROJECTION_BY_STAGE = [
+  {
+    stage: "Baseline (sin mecánicas)",
+    kRange: "0.10 - 0.12",
+    kMid: 0.11,
+    mechanic: "Sin referral program activo",
+    status: "Punto de partida",
+    color: "#6b7280",
+  },
+  {
+    stage: "+ Incentivo dual (+3 días al invitado)",
+    kRange: "0.15 - 0.18",
+    kMid: 0.165,
+    mechanic: "Invitee recibe +3 días al confirmar referido",
+    status: "Backend completo ✓",
+    color: "#f59e0b",
+  },
+  {
+    stage: "+ WhatsApp un clic (plantillas)",
+    kRange: "0.45 - 0.54",
+    kMid: 0.495,
+    mechanic: "5 plantillas: WhatsApp, IG, Facebook, Twitter, copy",
+    status: "Backend completo ✓",
+    color: "#1d4ed8",
+  },
+  {
+    stage: "+ Recompensas escaladas",
+    kRange: "0.68 - 0.81",
+    kMid: 0.745,
+    mechanic: "6 viral tiers: +1d → +2d → +5d+cleanImages → +10d+all30d → +3d+enhanceHD+bronze → unlock permanent+silver",
+    status: "Backend completo ✓",
+    color: "#8b5cf6",
+  },
+  {
+    stage: "+ Hitos + celebraciones",
+    kRange: "0.82 - 0.97",
+    kMid: 0.895,
+    mechanic: "7 milestones auto-recompensados + celebraciones visuales + ambassador badges (bronze/silver/gold/platinum)",
+    status: "Backend completo ✓ · UX frontend = palanca restante",
+    color: "#059669",
+  },
+]
+
+// ---------------------------------------------------------------------------
+// VIRAL TIERS — from backend (src/lib/referral.ts VIRAL_TIERS)
+// ---------------------------------------------------------------------------
+export const VIRAL_TIERS_DETAIL = [
+  { id: "tier_active_1", threshold: "1 activo", reward: "+1 día", unlock: "—", ambassador: "—", label: "Primer referido activo" },
+  { id: "tier_active_2", threshold: "2 activos", reward: "+2 días", unlock: "—", ambassador: "—", label: "2 referidos activos" },
+  { id: "tier_active_5", threshold: "5 activos", reward: "+5 días", unlock: "cleanImages", ambassador: "—", label: "5 referidos activos" },
+  { id: "tier_active_10", threshold: "10 activos", reward: "+10 días", unlock: "all features 30 días", ambassador: "—", label: "10 referidos activos" },
+  { id: "tier_paid_1", threshold: "1 pago", reward: "+3 días", unlock: "enhanceHD", ambassador: "🥉 Bronze", label: "Primer referido que pagó" },
+  { id: "tier_paid_3", threshold: "3 pagos", reward: "0 días", unlock: "ALL permanente", ambassador: "🥈 Silver", label: "Embajador Fichox" },
+  { id: "ambassador_gold", threshold: "5 pagos", reward: "—", unlock: "ALL (ya permanente)", ambassador: "🥇 Gold", label: "Badge gold" },
+  { id: "ambassador_platinum", threshold: "10 pagos", reward: "—", unlock: "ALL (ya permanente)", ambassador: "💎 Platinum", label: "Badge platinum" },
+]
+
+// ---------------------------------------------------------------------------
+// MILESTONES — from backend (7 auto-detected, auto-rewarded)
+// ---------------------------------------------------------------------------
+export const MILESTONES_DETAIL = [
+  { id: "first_capture", trigger: "Primera captura (1 producto)", reward: "+1 día", autoGrant: true },
+  { id: "ten_products", trigger: "10 productos capturados", reward: "+1 día", autoGrant: true },
+  { id: "fifty_products", trigger: "50 productos capturados", reward: "+3 días", autoGrant: true },
+  { id: "hundred_products", trigger: "100 productos capturados", reward: "+7 días", autoGrant: true },
+  { id: "first_publish", trigger: "Primera publicación", reward: "+1 día", autoGrant: true },
+  { id: "ten_publishes", trigger: "10 publicaciones", reward: "+1 día", autoGrant: true },
+  { id: "first_referral", trigger: "Primer referido confirmado", reward: "+1 día", autoGrant: true },
+]
+
+// ---------------------------------------------------------------------------
+// SHARE TEMPLATES — from backend (5 one-click templates)
+// ---------------------------------------------------------------------------
+export const SHARE_TEMPLATES_DETAIL = [
+  { platform: "WhatsApp", icon: "MessageCircle", how: "wa.me link con texto pre-llenado", friction: "Mínima (1 clic)" },
+  { platform: "Instagram", icon: "Instagram", how: "Caption pre-llenado (copy-paste, IG no soporta URL pre-fill)", friction: "Baja (2 clics)" },
+  { platform: "Facebook", icon: "Facebook", how: "Sharer URL con quote pre-llenado", friction: "Mínima (1 clic)" },
+  { platform: "Twitter/X", icon: "Twitter", how: "Intent URL con texto pre-llenado", friction: "Mínima (1 clic)" },
+  { platform: "Copiar enlace", icon: "Link", how: "Copia referral link al portapapeles", friction: "Mínima (1 clic)" },
+]
 
 // ---------------------------------------------------------------------------
 // VENEZUELAN MARKET RISK FACTORS
@@ -245,13 +339,13 @@ export const SCENARIOS: Scenario[] = [
     "optimistic", "Optimista", "🚀", "#059669",
     "Viral funciona + VE responde + expansión CO/EC rápida",
     [6, 14, 28, 48, 75, 110, 155, 205, 260, 320, 385, 450],
-    34.18, 0.05, 25, 0.50, 0.18,
+    34.18, 0.05, 25, 0.90, 0.18,
   ),
   buildScenario(
     "pragmatic", "Pragmática", "⚖️", "#1d4ed8",
     "Viral moderado + VE con fricción + CO lento",
     [5, 10, 18, 28, 40, 54, 70, 88, 105, 122, 140, 158],
-    41.79, 0.10, 38, 0.30, 0.12,
+    41.79, 0.10, 38, 0.40, 0.12,
   ),
   buildScenario(
     "pessimistic", "Pesimista", "⚠️", "#e11d48",
@@ -292,7 +386,7 @@ export const SCENARIO_COMPARISON = [
   { metric: "ARPU mensual blendado", optimista: "$34.18", pragmatica: "$41.79", pesimista: "$46.30", note: "Mayor precio mensual = ARPU más alto en escenarios de menor conversión anual" },
   { metric: "Churn mensual", optimista: "5%", pragmatica: "10%", pesimista: "18%", note: "VE churn alto por emigración + apagones" },
   { metric: "CAC blendado", optimista: "$25", pragmatica: "$38", pesimista: "$60", note: "Viral reduce CAC en optimista" },
-  { metric: "Coeficiente viral K", optimista: "0.50", pragmatica: "0.30", pesimista: "0.12", note: "K>1 = exponencial real. Ningún escenario lo alcanza" },
+  { metric: "Coeficiente viral K", optimista: "0.90", pragmatica: "0.40", pesimista: "0.12", note: "K>0.9 alcanzable con adopción completa del frontend. Backend completo ✓" },
   { metric: "Trial → paid conversión", optimista: "18%", pragmatica: "12%", pesimista: "6%", note: "VE ingreso limitado reduce conversión" },
   { metric: "Clientes mes 12", optimista: "450", pragmatica: "158", pesimista: "35", note: "Rango 13x entre extremos" },
   { metric: "Breakeven operativo (clientes)", optimista: "34", pragmatica: "26", pesimista: "23", note: "ARPU alto baja breakeven significativamente" },

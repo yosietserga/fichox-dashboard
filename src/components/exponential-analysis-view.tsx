@@ -5,7 +5,7 @@ import { motion } from 'framer-motion'
 import {
   Zap, TrendingUp, TrendingDown, AlertTriangle, Target, Users, DollarSign,
   CheckCircle2, XCircle, Sparkles, Rocket, Scale, ShieldAlert, GitBranch,
-  Award, BarChart3, Lightbulb, ArrowRight, Activity, Flame,
+  Award, BarChart3, Lightbulb, ArrowRight, Activity, Flame, Share2,
 } from 'lucide-react'
 import {
   ComposedChart, Bar, Line, XAxis, YAxis, CartesianGrid, Tooltip,
@@ -16,6 +16,7 @@ import { Badge } from '@/components/ui/badge'
 import { Separator } from '@/components/ui/separator'
 import {
   EXPO_ANALYSIS, PRICING_COMPARISON, PRICING_DISCLAIMER, MECHANICS_ANALYSIS, VIRAL_MODEL,
+  K_PROJECTION_BY_STAGE, VIRAL_TIERS_DETAIL, MILESTONES_DETAIL, SHARE_TEMPLATES_DETAIL,
   VE_RISKS, SCENARIOS, COMBINED_CUSTOMER_TRAJECTORY, COMBINED_REVENUE,
   COMBINED_CUMULATIVE, SCENARIO_COMPARISON, PLAN_IMPACTS, RECOMMENDATIONS,
 } from '@/lib/exponential-data'
@@ -85,7 +86,7 @@ export function ExponentialAnalysisView() {
             <div className="mt-7 grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-2xl">
               <HeroStat value="3" label="Escenarios" />
               <HeroStat value="$55" label="Nuevo precio/mes" />
-              <HeroStat value="K=0.30" label="Viral pragmático" />
+              <HeroStat value="K>0.9" label="Target viral alcanzable" />
               <HeroStat value="23-34" label="Breakeven clientes" />
             </div>
           </motion.div>
@@ -246,6 +247,135 @@ export function ExponentialAnalysisView() {
             </div>
           </CardContent>
         </Card>
+      </section>
+
+      {/* ===================== K PROJECTION BY STAGE ===================== */}
+      <section className="mx-auto max-w-6xl px-4 sm:px-6 py-14 sm:py-20">
+        <SectionTitle
+          kicker="Proyección de K por etapa"
+          title="Cómo se construye K > 0.9"
+          desc="Del backend cold run: cada mecánica viral añade palanca al coeficiente K. El backend está completo — la palanca restante es UX del frontend (botones un-clic, celebraciones, visualización de niveles)."
+        />
+
+        {/* K projection chart */}
+        <Card className="border-blue-100 mb-6">
+          <CardHeader className="pb-2">
+            <CardTitle className="text-base flex items-center gap-2"><TrendingUp className="size-4" style={{ color: EMERALD }} /> K acumulado por etapa de mecánica</CardTitle>
+            <CardDescription>Target K {'>'} 0.9 alcanzable con adopción completa del frontend</CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="h-[300px]">
+              <ResponsiveContainer width="100%" height="100%">
+                <ComposedChart
+                  data={K_PROJECTION_BY_STAGE.map(s => ({ stage: s.stage.split(' +')[0].substring(0, 25), kMid: s.kMid, kMin: parseFloat(s.kRange.split(' - ')[0]), kMax: parseFloat(s.kRange.split(' - ')[1]), color: s.color }))}
+                  margin={{ top: 8, right: 8, left: -10, bottom: 40 }}
+                >
+                  <CartesianGrid strokeDasharray="3 3" stroke="#e5e7eb" vertical={false} />
+                  <XAxis dataKey="stage" tick={{ fontSize: 9, fill: GRAPHITE }} axisLine={false} tickLine={false} angle={-25} textAnchor="end" height={70} />
+                  <YAxis domain={[0, 1]} tick={{ fontSize: 11, fill: GRAPHITE }} axisLine={false} tickLine={false} />
+                  <Tooltip contentStyle={{ borderRadius: 12, border: '1px solid #e5e7eb', fontSize: 12 }} formatter={(v: number) => [v.toFixed(3), 'K']} />
+                  <ReferenceLine y={0.9} stroke={EMERALD} strokeWidth={2} strokeDasharray="5 5" label={{ value: 'Target K>0.9', position: 'right', fill: EMERALD, fontSize: 11 }} />
+                  <Bar dataKey="kMid" name="K promedio" radius={[4, 4, 0, 0]} maxBarSize={50}>
+                    {K_PROJECTION_BY_STAGE.map((s, i) => <Cell key={i} fill={s.color} />)}
+                  </Bar>
+                </ComposedChart>
+              </ResponsiveContainer>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Stage detail table */}
+        <Card className="border-blue-100 mb-6">
+          <CardHeader><CardTitle className="text-base">Detalle por etapa</CardTitle></CardHeader>
+          <CardContent className="p-0">
+            <div className="overflow-x-auto">
+              <table className="w-full text-sm">
+                <thead>
+                  <tr className="border-b text-left text-xs text-muted-foreground">
+                    <th className="px-5 py-3 font-medium">Etapa</th>
+                    <th className="px-5 py-3 font-medium text-center">K range</th>
+                    <th className="px-5 py-3 font-medium">Mecánica añadida</th>
+                    <th className="px-5 py-3 font-medium">Status</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {K_PROJECTION_BY_STAGE.map((s, i) => (
+                    <tr key={i} className="border-b last:border-0 hover:bg-blue-50/30">
+                      <td className="px-5 py-3 align-top">
+                        <span className="size-2.5 rounded-full inline-block mr-1.5" style={{ background: s.color }} />
+                        <span className="font-semibold" style={{ color: INK }}>{s.stage}</span>
+                      </td>
+                      <td className="px-5 py-3 align-top text-center font-mono font-bold" style={{ color: s.color }}>{s.kRange}</td>
+                      <td className="px-5 py-3 align-top text-xs text-muted-foreground">{s.mechanic}</td>
+                      <td className="px-5 py-3 align-top"><Badge variant="outline" className="text-[10px]" style={{ borderColor: s.color, color: s.color }}>{s.status}</Badge></td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Viral tiers + milestones + share templates */}
+        <div className="grid lg:grid-cols-3 gap-4">
+          {/* Viral tiers */}
+          <Card className="border-blue-100">
+            <CardHeader className="pb-2">
+              <CardTitle className="text-sm flex items-center gap-2"><Award className="size-4" style={{ color: PURPLE }} /> 6 viral tiers + 2 ambassador badges</CardTitle>
+              <CardDescription>Escalado de recompensas + feature unlocks</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-1.5">
+              {VIRAL_TIERS_DETAIL.map((t) => (
+                <div key={t.id} className="rounded-lg p-2 text-xs" style={{ background: SAND }}>
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="font-semibold" style={{ color: INK }}>{t.threshold}</span>
+                    <span className="font-mono font-bold" style={{ color: EMERALD }}>{t.reward}</span>
+                  </div>
+                  <div className="flex items-center justify-between gap-2 mt-0.5 text-[10px] text-muted-foreground">
+                    <span>Unlock: <span style={{ color: BLUE_DARK }}>{t.unlock}</span></span>
+                    {t.ambassador !== "—" && <span>{t.ambassador}</span>}
+                  </div>
+                </div>
+              ))}
+            </CardContent>
+          </Card>
+
+          {/* Milestones */}
+          <Card className="border-blue-100">
+            <CardHeader className="pb-2">
+              <CardTitle className="text-sm flex items-center gap-2"><Sparkles className="size-4" style={{ color: AMBER }} /> 7 milestones auto-recompensados</CardTitle>
+              <CardDescription>Celebración visual al lograrlos</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-1.5">
+              {MILESTONES_DETAIL.map((m) => (
+                <div key={m.id} className="rounded-lg p-2 flex items-center justify-between gap-2 text-xs" style={{ background: SAND }}>
+                  <span style={{ color: INK }}>{m.trigger}</span>
+                  <Badge className="border-0 text-[10px] text-amber-950" style={{ background: AMBER_LIGHT }}>{m.reward}</Badge>
+                </div>
+              ))}
+              <p className="text-[10px] text-muted-foreground mt-2 italic">Total posible: +15 días por milestones</p>
+            </CardContent>
+          </Card>
+
+          {/* Share templates */}
+          <Card className="border-blue-100">
+            <CardHeader className="pb-2">
+              <CardTitle className="text-sm flex items-center gap-2"><Share2 className="size-4" style={{ color: BLUE }} /> 5 plantillas un-clic</CardTitle>
+              <CardDescription>Friction mínima para compartir</CardDescription>
+            </CardHeader>
+            <CardContent className="space-y-1.5">
+              {SHARE_TEMPLATES_DETAIL.map((t) => (
+                <div key={t.platform} className="rounded-lg p-2 text-xs" style={{ background: SAND }}>
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="font-semibold" style={{ color: INK }}>{t.platform}</span>
+                    <Badge variant="outline" className="text-[9px]">{t.friction}</Badge>
+                  </div>
+                  <p className="text-[10px] text-muted-foreground mt-0.5">{t.how}</p>
+                </div>
+              ))}
+            </CardContent>
+          </Card>
+        </div>
       </section>
 
       {/* ===================== 3 SCENARIOS COMPARISON ===================== */}
