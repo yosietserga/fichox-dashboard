@@ -84,9 +84,9 @@ export function ExponentialAnalysisView() {
 
             <div className="mt-7 grid grid-cols-2 sm:grid-cols-4 gap-3 max-w-2xl">
               <HeroStat value="3" label="Escenarios" />
-              <HeroStat value="$29" label="Nuevo precio/mes" />
-              <HeroStat value="K=0.36" label="Viral pragmático" />
-              <HeroStat value="53-70" label="Breakeven clientes" />
+              <HeroStat value="$55" label="Nuevo precio/mes" />
+              <HeroStat value="K=0.30" label="Viral pragmático" />
+              <HeroStat value="23-32" label="Breakeven clientes" />
             </div>
           </motion.div>
         </div>
@@ -97,7 +97,7 @@ export function ExponentialAnalysisView() {
         <SectionTitle
           kicker="Cambio de pricing"
           title="Precio anterior vs nuevo"
-          desc="Reducción del 64% en mensual ($80→$29), nuevo tier trimestral, y lifetime con escasez (primeros 50). Strategy: volumen + viralidad sobre ARPU alto."
+          desc="Reducción del 31% en mensual ($80→$55), nuevo tier trimestral, y lifetime con escasez (primeros 50). Strategy: equilibrio volumen + margen con viralidad."
         />
 
         <Card className="border-blue-100 overflow-hidden mb-6">
@@ -144,9 +144,9 @@ export function ExponentialAnalysisView() {
             <div className="text-sm">
               <p className="font-semibold mb-1" style={{ color: INK }}>Insight clave del cambio de pricing</p>
               <p className="text-muted-foreground leading-relaxed">
-                ARPU cae ~55% ($46→$21-25) pero el volumen potencial sube 5-10x con trial freemium + viralidad.
-                <strong style={{ color: INK }}> Breakeven sube de 17 a 53-70 clientes</strong> — se necesita mucho más volumen,
-                pero el trial + referrals pueden lograrlo si K {'>'} 0.3. El riesgo: si viral no funciona, el pricing bajo no se sostiene.
+                ARPU blendado sube a $35-47 (vs $46 original) — solo -5 a -25% del ARPU original, no -55%.
+                <strong style={{ color: INK }}> Breakeven baja a 23-32 clientes</strong> (vs 17 original) — muy alcanzable,
+                y el trial + referrals pueden llevar ahí rápido si K {'>'} 0.25. Pricing $55 equilibra volumen y margen.
               </p>
             </div>
           </CardContent>
@@ -592,14 +592,14 @@ export function ExponentialAnalysisView() {
                 Exponencial potencial · realista pragmática · pesimista como seguro
               </h2>
               <p className="text-white/75 mt-3 max-w-2xl mx-auto">
-                Las nuevas mecánicas pueden llevar a FichoX a 600 clientes (optimista) o estancarse en 45 (pesimista).
-                Planifica con el pragmático (190 clientes, breakeven M11), mantén $32K buffer para el pesimista,
-                y ejecuta agresivamente hacia el optimista. El factor crítico: K viral {'>'} 0.3 confirmado en Sem 4.
+                Las nuevas mecánicas pueden llevar a FichoX a 450 clientes (optimista) o estancarse en 35 (pesimista).
+                Planifica con el pragmático (158 clientes, breakeven M5 operativo), mantén $11K buffer para el pesimista,
+                y ejecuta agresivamente hacia el optimista. El factor crítico: K viral {'>'} 0.25 confirmado en Sem 4.
               </p>
               <div className="mt-7 grid grid-cols-3 gap-3 max-w-xl mx-auto">
-                <ClosingStat emoji="🚀" value="600" label="optimista M12" color={EMERALD} />
-                <ClosingStat emoji="⚖️" value="190" label="pragmática M12" color={AMBER_LIGHT} />
-                <ClosingStat emoji="⚠️" value="45" label="pesimista M12" color={ROSE} />
+                <ClosingStat emoji="🚀" value="450" label="optimista M12" color={EMERALD} />
+                <ClosingStat emoji="⚖️" value="158" label="pragmática M12" color={AMBER_LIGHT} />
+                <ClosingStat emoji="⚠️" value="35" label="pesimista M12" color={ROSE} />
               </div>
             </motion.div>
           </CardContent>

@@ -1,6 +1,6 @@
 // ============================================================================
 // FichoX — Exponential Mechanics Analysis & Realistic Projections
-// New pricing ($29/mo), viral referrals, trial freemium, feature unlocks
+// New pricing ($55/mo), viral referrals, trial freemium, feature unlocks
 // 3 scenarios: Optimistic / Pragmatic / Pessimistic (VE market aware)
 // ============================================================================
 
@@ -8,7 +8,7 @@ export const EXPO_ANALYSIS = {
   name: "Análisis Exponencial · Nuevas mecánicas",
   date: "Jul 2025",
   summary:
-    "Las nuevas mecánicas (pricing agresivo $29/mo, trial freemium 7d, referrals virales con unlock de features, lifetime scarcity) proyectan un crecimiento exponencial POTENCIAL pero dependen críticamente de la ejecución viral y del mercado venezolano. Aquí analizamos 3 escenarios realistas.",
+    "Las nuevas mecánicas (pricing $55/mo, trial freemium 7d, referrals virales con unlock de features, lifetime scarcity) proyectan un crecimiento exponencial POTENCIAL pero dependen críticamente de la ejecución viral y del mercado venezolano. Aquí analizamos 3 escenarios realistas.",
 }
 
 // ---------------------------------------------------------------------------
@@ -16,9 +16,9 @@ export const EXPO_ANALYSIS = {
 // ---------------------------------------------------------------------------
 export const PRICING_COMPARISON = [
   { tier: "Trial", oldPrice: "—", newPrice: "$0 · 7 días", oldMonthly: "—", newMonthly: "$0", change: "NUEVO", note: "Freemium con preview de todas las features" },
-  { tier: "Mensual", oldPrice: "$80/mo", newPrice: "$29/mo", oldMonthly: "$80.00", newMonthly: "$29.00", change: "-64%", note: "Precio competitivo LATAM" },
-  { tier: "Trimestral", oldPrice: "—", newPrice: "$78/3mo", oldMonthly: "—", newMonthly: "$26.00", change: "NUEVO", note: "Ahorro 10% vs mensual" },
-  { tier: "Anual", oldPrice: "$250/yr", newPrice: "$249/yr", oldMonthly: "$20.83", newMonthly: "$20.75", change: "-0.4%", note: "Más popular · ahorro 28%" },
+  { tier: "Mensual", oldPrice: "$80/mo", newPrice: "$55/mo", oldMonthly: "$80.00", newMonthly: "$55.00", change: "-31%", note: "Precio competitivo LATAM" },
+  { tier: "Trimestral", oldPrice: "—", newPrice: "$149/3mo", oldMonthly: "—", newMonthly: "$49.67", change: "NUEVO", note: "Ahorro 10% vs mensual" },
+  { tier: "Anual", oldPrice: "$250/yr", newPrice: "$399/yr", oldMonthly: "$20.83", newMonthly: "$33.25", change: "+60%", note: "Más popular · ahorro 40% vs mensual" },
   { tier: "Lifetime", oldPrice: "—", newPrice: "$499 once", oldMonthly: "—", newMonthly: "~$5.20", change: "NUEVO", note: "Solo primeros 50 · escasez" },
 ]
 
@@ -40,7 +40,7 @@ export const MECHANICS_ANALYSIS = [
     type: "Viral",
     howItWorks: "Merchant comparte código por WhatsApp. Nuevo merchant registra con código. Tras 3 días de uso → referrer +1 día. Tras 2 paying → unlock ALL features permanente.",
     exponentialPotential: "Muy alto",
-    rationale: "El unlock permanente por 2 referidos pagos es el motor viral. Incentivo alineado: referir 2 = ahorrar $249+/año. Cada paying user trae potencialmente 2 nuevos paying users.",
+    rationale: "El unlock permanente por 2 referidos pagos es el motor viral. Incentivo alineado: referir 2 = ahorrar $399+/año. Cada paying user trae potencialmente 2 nuevos paying users.",
     risk: "Fraude (autorreferencias, wallets múltiples). Mitigación: 1 wallet por device + KYC para unlock.",
     metric: "Coeficiente viral K (invitations × conversion)",
   },
@@ -49,7 +49,7 @@ export const MECHANICS_ANALYSIS = [
     type: "Engagement",
     howItWorks: "Google review, social share, WhatsApp share → +1 día cada uno (verificado con VLM screenshot)",
     exponentialPotential: "Medio",
-    rationale: "Cambio clave de +7 a +1: antes 4-5 acciones = mes gratis (canibalizaba revenue). Ahora 30 acciones = mes gratis (casi nadie lo hará,subscribe en su lugar). Mantiene engagement sin matar monetización.",
+    rationale: "Cambio clave de +7 a +1: antes 4-5 acciones = mes gratis (canibalizaba revenue). Ahora 55 acciones = mes gratis (casi nadie lo hará, subscribe en su lugar). Mantiene engagement sin matar monetización.",
     risk: "Screenshots falsos. Mitigación: VLM verifica presencia de marca FichoX + URL de referral.",
     metric: "Reward actions per user per month",
   },
@@ -72,12 +72,12 @@ export const MECHANICS_ANALYSIS = [
     metric: "Lifetime tier sell-through rate",
   },
   {
-    mechanic: "Pricing agresivo $29/mo",
+    mechanic: "Pricing $55/mo (equilibrado)",
     type: "Adquisición",
-    howItWorks: "Mensual $29 (vs $80 anterior). Trimestral $78. Anual $249.",
-    exponentialPotential: "Alto (volumen)",
-    rationale: "$29/mo es ~10-15% del salario mínimo VE en USD = asequible para comerciante informal. Baja fricción de decisión. Compensa menor ARPU con mayor volumen y viralidad.",
-    risk: "ARPU cae 64%. Breakeven sube de 17 a ~45 clientes. Necesita volumen mucho mayor.",
+    howItWorks: "Mensual $55 (vs $80 original). Trimestral $149. Anual $399. Lifetime $499.",
+    exponentialPotential: "Alto (volumen + margen)",
+    rationale: "$55/mo es ~18-20% del salario mínimo VE en USD = asequible para comerciante establecido. ARPU saludable ($35-47 blendado) mantiene márgenes del 75-80%. Compensa volumen con viralidad sin sacrificar rentabilidad.",
+    risk: "Mayor fricción que $29 pero ARPU 2x superior. Breakeven baja de 53-70 a 23-32 clientes.",
     metric: "ARPU blendado + volume growth",
   },
 ]
@@ -91,26 +91,26 @@ export const VIRAL_MODEL = {
     {
       name: "Optimista",
       invitationsPerUser: 5,
-      conversionRate: 0.12,
-      k: 0.6,
-      interpretation: "Cada 10 users traen 6 nuevos via referrals. Crecimiento exponencial real.",
-      assumptions: ["Comunidad WhatsApp activa", "Incentivo unlock permanente funciona", "Mercado CO/EC adopta rápido"],
+      conversionRate: 0.10,
+      k: 0.5,
+      interpretation: "Cada 10 users traen 5 nuevos via referrals. Crecimiento exponencial cercano.",
+      assumptions: ["Comunidad WhatsApp activa", "Incentivo unlock permanente funciona ($399+ ahorrado)", "Mercado CO/EC adopta rápido"],
     },
     {
       name: "Pragmática",
       invitationsPerUser: 3,
-      conversionRate: 0.12,
-      k: 0.36,
-      interpretation: "Cada 10 users traen 3.6 nuevos. Crecimiento acelerado pero lineal-ish.",
-      assumptions: ["Referidos funcionan moderadamente", "VE responde pero con fricción", "Algo de fraud requiere mitigación"],
+      conversionRate: 0.10,
+      k: 0.30,
+      interpretation: "Cada 10 users traen 3 nuevos. Crecimiento acelerado pero lineal-ish.",
+      assumptions: ["Referidos funcionan moderadamente", "VE responde pero con fricción de precio", "Algo de fraude requiere mitigación"],
     },
     {
       name: "Pesimista",
       invitationsPerUser: 2,
-      conversionRate: 0.075,
-      k: 0.15,
-      interpretation: "Cada 10 users traen 1.5 nuevos. Crecimiento mayormente paid acquisition.",
-      assumptions: ["Fraude autorreferencias reduce efectividad", "Mercado VE resistente", "WhatsApp API bloqueos intermitentes"],
+      conversionRate: 0.06,
+      k: 0.12,
+      interpretation: "Cada 10 users traen 1.2 nuevos. Crecimiento mayormente paid acquisition.",
+      assumptions: ["Fraude autorreferencias reduce efectividad", "Mercado VE resistente a $55/mo", "WhatsApp API bloqueos intermitentes"],
     },
   ],
 }
@@ -122,8 +122,8 @@ export const VE_RISKS = [
   { factor: "Apagones eléctricos", probability: "Alta", impact: "Medio", description: "10-30% de sesiones interrumpidas en zonas afectadas (Zulia, interior)", mitigation: "Modo offline + sync cuando vuelve conexión", metricImpact: "Churn +2-3%" },
   { factor: "Inestabilidad internet", probability: "Alta", impact: "Medio", description: "15-25% drop rate en sesiones largas de captura IA", mitigation: "Retry automático + cola offline", metricImpact: "Captura success rate -15%" },
   { factor: "Depreciación Bolívar", probability: "Alta", impact: "Bajo", description: "Precios en USD mitiga, pero poder adquisitivo oscila", mitigation: "Mantener pricing en USD + USDT", metricImpact: "Neutral (ya mitigado)" },
-  { factor: "Ingreso disponible bajo", probability: "Alta", impact: "Alto", description: "$29/mo = 10-15% salario mínimo VE. Muchos no pueden pagar", mitigation: "Trial generoso + rewards + referrals para unlock", metricImpact: "Trial→paid conversion -5-8%" },
-  { factor: "Adopción USDT limitada", probability: "Media", impact: "Medio", description: "~40% de comerciantes tienen wallet BSC. Resto usa P2P/bancario", mitigation: "Aceptar Binance Pay + Zelle +Pago Móvil como fallback", metricImpact: "Payment friction +10-15%" },
+  { factor: "Ingreso disponible bajo", probability: "Alta", impact: "Alto", description: "$55/mo = 18-20% salario mínimo VE. Comerciante establecido puede, informal no", mitigation: "Trial generoso + rewards + referrals para unlock", metricImpact: "Trial→paid conversion -8-12%" },
+  { factor: "Adopción USDT limitada", probability: "Media", impact: "Medio", description: "~40% de comerciantes tienen wallet BSC. Resto usa P2P/bancario", mitigation: "Aceptar Binance Pay + Zelle + Pago Móvil como fallback", metricImpact: "Payment friction +10-15%" },
   { factor: "Dependencia WhatsApp", probability: "Media", impact: "Crítico", description: "Si Meta bloquea WhatsApp Business API, 60% del canal de adquisición muere", mitigation: "Diversificar a Telegram + IG DM + SMS", metricImpact: "CAC +200% si ocurre" },
   { factor: "Regulación cripto incierta", probability: "Media", impact: "Medio", description: "SUNACRIP puede requerir registro. Cambios regulatorios posibles", mitigation: "Jurisdicción Panamá + compliance proactivo", metricImpact: "Legal cost +$5K/año" },
   { factor: "Fuga de cerebros (emigración)", probability: "Alta", impact: "Medio", description: "Comerciantes emigran a CO/EC/AR = churn geográfico", mitigation: "Seguir al usuario (expansión regional) + portabilidad de cuenta", metricImpact: "Churn +3-5%" },
@@ -157,7 +157,6 @@ export interface Scenario {
   emoji: string
   color: string
   tagline: string
-  // assumptions
   arpu: number
   variableCostPerCustomer: number
   monthlyChurn: number
@@ -165,9 +164,7 @@ export interface Scenario {
   k: number
   trialConversion: number
   fixedCostsMonthly: number
-  // projections
   months: ScenarioMonth[]
-  // summary
   totalCustomers: number
   totalRevenue: number
   breakevenCustomers: number
@@ -178,16 +175,15 @@ export interface Scenario {
   ltvCac: number
 }
 
-const FIXED_COSTS = 850 // slightly higher due to reward verification VLM infrastructure
-const VAR_COST = 8.5 // IA + reward verification VLM (~$0.5 extra per user for screenshots)
+const FIXED_COSTS = 850
+const VAR_COST = 8.5
 
-// Build scenario months
 function buildScenario(
   id: string, name: string, emoji: string, color: string, tagline: string,
   trajectory: number[], arpu: number, churn: number, cac: number, k: number,
   trialConv: number,
 ): Scenario {
-  let cumulative = -5000 // updated seed (constitución + setup)
+  let cumulative = -5000
   const months: ScenarioMonth[] = []
   let prevCustomers = 0
 
@@ -200,7 +196,7 @@ function buildScenario(
     const variableCosts = +(customers * VAR_COST).toFixed(2)
     const fixedCosts = FIXED_COSTS
     const acquisitionCost = +(newCustomers * cac).toFixed(2)
-    const rewardVerificationCost = +(customers * 0.4).toFixed(2) // ~0.4 reward actions/user/month × $1 VLM
+    const rewardVerificationCost = +(customers * 0.4).toFixed(2)
     const totalCosts = +(fixedCosts + variableCosts + acquisitionCost + rewardVerificationCost).toFixed(2)
     const netProfit = +(revenue - totalCosts).toFixed(2)
     cumulative = +(cumulative + netProfit).toFixed(2)
@@ -229,29 +225,32 @@ function buildScenario(
   }
 }
 
-// ARPU calculations per scenario (blend of tiers)
-// Optimistic: 5% mensual, 15% trimestral, 75% anual, 5% lifetime = $21.17
-// Pragmatic: 30% mensual, 35% trimestral, 30% anual, 5% lifetime = $24.29
-// Pessimistic: 40% mensual, 30% trimestral, 30% anual, 0% lifetime = $25.63
+// ARPU calculations per scenario (blend of tiers with $55/mo, $149/3mo, $399/yr, $499 lifetime)
+// Optimistic: 5% mensual, 15% trimestral, 75% anual, 5% lifetime = $35.40
+//   0.05×55 + 0.15×49.67 + 0.75×33.25 + 0.05×5.20 = 2.75 + 7.45 + 24.94 + 0.26 = 35.40
+// Pragmatic: 30% mensual, 35% trimestral, 30% anual, 5% lifetime = $44.12
+//   0.30×55 + 0.35×49.67 + 0.30×33.25 + 0.05×5.20 = 16.50 + 17.38 + 9.98 + 0.26 = 44.12
+// Pessimistic: 40% mensual, 30% trimestral, 30% anual, 0% lifetime = $46.88
+//   0.40×55 + 0.30×49.67 + 0.30×33.25 = 22.00 + 14.90 + 9.98 = 46.88
 
 export const SCENARIOS: Scenario[] = [
   buildScenario(
     "optimistic", "Optimista", "🚀", "#059669",
     "Viral funciona + VE responde + expansión CO/EC rápida",
-    [8, 18, 35, 60, 95, 140, 195, 260, 335, 420, 510, 600],
-    21.17, 0.05, 20, 0.6, 0.22,
+    [6, 14, 28, 48, 75, 110, 155, 205, 260, 320, 385, 450],
+    35.40, 0.05, 25, 0.50, 0.18,
   ),
   buildScenario(
     "pragmatic", "Pragmática", "⚖️", "#1d4ed8",
     "Viral moderado + VE con fricción + CO lento",
-    [6, 12, 22, 34, 48, 65, 84, 104, 125, 146, 168, 190],
-    24.29, 0.10, 35, 0.36, 0.15,
+    [5, 10, 18, 28, 40, 54, 70, 88, 105, 122, 140, 158],
+    44.12, 0.10, 38, 0.30, 0.12,
   ),
   buildScenario(
     "pessimistic", "Pesimista", "⚠️", "#e11d48",
     "Viral débil + VE resistente + fraude referrals + apagones",
-    [3, 5, 8, 12, 16, 20, 24, 28, 32, 36, 40, 45],
-    25.63, 0.18, 55, 0.15, 0.09,
+    [3, 5, 8, 11, 14, 17, 20, 23, 26, 29, 32, 35],
+    46.88, 0.18, 60, 0.12, 0.06,
   ),
 ]
 
@@ -283,18 +282,18 @@ export const COMBINED_CUMULATIVE = SCENARIOS[0].months.map((_, i) => ({
 // SCENARIO COMPARISON SUMMARY
 // ---------------------------------------------------------------------------
 export const SCENARIO_COMPARISON = [
-  { metric: "ARPU mensual blendado", optimista: "$21.17", pragmatica: "$24.29", pesimista: "$25.63", note: "Pesimista tiene ARPU más alto (más mensual) pero menos volumen" },
+  { metric: "ARPU mensual blendado", optimista: "$35.40", pragmatica: "$44.12", pesimista: "$46.88", note: "Mayor precio = ARPU 2x superior al escenario $29" },
   { metric: "Churn mensual", optimista: "5%", pragmatica: "10%", pesimista: "18%", note: "VE churn alto por emigración + apagones" },
-  { metric: "CAC blendado", optimista: "$20", pragmatica: "$35", pesimista: "$55", note: "Viral reduce CAC en optimista" },
-  { metric: "Coeficiente viral K", optimista: "0.60", pragmatica: "0.36", pesimista: "0.15", note: "K>1 = exponencial real. Ningún escenario lo alcanza" },
-  { metric: "Trial → paid conversión", optimista: "22%", pragmatica: "15%", pesimista: "9%", note: "VE ingreso limitado reduce conversión" },
-  { metric: "Clientes mes 12", optimista: "600", pragmatica: "190", pesimista: "45", note: "Rango 13x entre extremos" },
-  { metric: "Breakeven operativo (clientes)", optimista: "70", pragmatica: "60", pesimista: "53", note: "Cae con ARPU más bajo" },
-  { metric: "Breakeven operativo (mes)", optimista: "M4", pragmatica: "M7", pesimista: "Nunca (12m)", note: "Pesimista no llega a breakeven" },
-  { metric: "Breakeven acumulado (mes)", optimista: "M6", pragmatica: "M11", pesimista: "Nunca", note: "Recupera seed" },
-  { metric: "LTV por cliente", optimista: "$254", pragmatica: "$158", pesimista: "$95", note: "Churn pesa más que ARPU" },
-  { metric: "LTV : CAC", optimista: "12.7:1", pragmatica: "4.5:1", pesimista: "1.7:1", note: "Pesimista apenas sano (>3:1)" },
-  { metric: "Net profit acumulado Q3", optimista: "+$87K", pragmatica: "+$3.8K", pesimista: "-$32K", note: "Pesimista quema cash" },
+  { metric: "CAC blendado", optimista: "$25", pragmatica: "$38", pesimista: "$60", note: "Viral reduce CAC en optimista" },
+  { metric: "Coeficiente viral K", optimista: "0.50", pragmatica: "0.30", pesimista: "0.12", note: "K>1 = exponencial real. Ningún escenario lo alcanza" },
+  { metric: "Trial → paid conversión", optimista: "18%", pragmatica: "12%", pesimista: "6%", note: "$55/mo reduce conversión vs $29" },
+  { metric: "Clientes mes 12", optimista: "450", pragmatica: "158", pesimista: "35", note: "Rango 13x entre extremos" },
+  { metric: "Breakeven operativo (clientes)", optimista: "32", pragmatica: "24", pesimista: "23", note: "ARPU alto baja breakeven significativamente" },
+  { metric: "Breakeven operativo (mes)", optimista: "M5", pragmatica: "M5", pesimista: "Nunca (12m)", note: "Pesimista no llega a breakeven" },
+  { metric: "Breakeven acumulado (mes)", optimista: "M9", pragmatica: "M11", pesimista: "Nunca", note: "Recupera seed" },
+  { metric: "LTV por cliente", optimista: "$538", pragmatica: "$356", pesimista: "$213", note: "ARPU alto compensa churn" },
+  { metric: "LTV : CAC", optimista: "21.5:1", pragmatica: "9.4:1", pesimista: "3.6:1", note: "Todos los escenarios son sanos (>3:1)" },
+  { metric: "Net profit acumulado Q3", optimista: "+$26K", pragmatica: "+$6.4K", pesimista: "-$11K", note: "Pesimista quema cash pero menos que con $29" },
 ]
 
 // ---------------------------------------------------------------------------
@@ -304,13 +303,13 @@ export const PLAN_IMPACTS = [
   {
     plan: "1. Plan de Negocio",
     changes: [
-      "ARPU cae de $46.25 a $21-26 (depende escenario) — hasta -55%",
-      "Breakeven sube de 17 a 53-70 clientes (3-4x más)",
+      "ARPU blendado sube a $35-47 (vs $21-26 con $29/mo) — +60-80% superior",
+      "Breakeven baja a 23-32 clientes (vs 53-70 con $29/mo) — mucho más alcanzable",
       "Nuevas fuentes de revenue: Lifetime ($499 × 50 = $24,950 upfront)",
       "Reward days reemplazan potencial churn (engagement sin canibalizar)",
-      "Modelo financiero debe re-proyectarse con 3 escenarios",
+      "Modelo financiero re-proyectado con 3 escenarios y pricing $55",
     ],
-    action: "Re-calcular todos los números con nuevo pricing. Preparar pitch con escenario pragmático como base.",
+    action: "Re-calcular todos los números con pricing $55. Breakeven más sano. Preparar pitch con escenario pragmático como base.",
     severity: "Crítica",
   },
   {
@@ -330,7 +329,7 @@ export const PLAN_IMPACTS = [
     changes: [
       "Trial freemium = funnel top 5-10x más ancho (de paywall a free trial)",
       "Referral program ahora es CORE (no complementario) — requiere branding propio",
-      "Meta Ads messaging cambia: 'prueba gratis 7 días' vs 'suscríbete $80'",
+      "Meta Ads messaging cambia: 'prueba gratis 7 días' vs 'suscríbete $55'",
       "Influencer collabs ahora con referral codes trackables",
       "Segmentación debe incluir 'trial users' como etapa del funnel",
     ],
@@ -364,13 +363,13 @@ export const PLAN_IMPACTS = [
   {
     plan: "6. Plan Financiero & Alianzas",
     changes: [
-      "ARPU menor = necesidad de más volumen = más capital para escalar",
+      "ARPU mayor ($35-47) = menos volumen necesario = menos capital para escalar",
       "Lifetime tier = $24,950 upfront cash (mejora runway mes 1-2)",
-      "Breakeven más alto = longer runway needed (de 18 a 24 meses target)",
+      "Breakeven más bajo (23-32) = shorter runway needed (18 meses suficiente)",
       "Nueva alianza crítica: KYC provider (para feature unlock tier)",
       "BSC Grant más importante que nunca (volumen BSC por referrals)",
     ],
-    action: "Re-calcular capital raising: necesarios $400K (vs $250K) para 24 meses runway. Priorizar KYC partner.",
+    action: "Re-calcular capital raising: $300K suficientes para 18 meses runway. Priorizar KYC partner. Lifetime tier acelera runway.",
     severity: "Crítica",
   },
   {
@@ -394,7 +393,7 @@ export const RECOMMENDATIONS = [
   {
     priority: "Crítica",
     title: "Adoptar escenario pragmático como base de planificación",
-    rationale: "El pragmático (190 clientes M12, breakeven M11, +$3.8K net) es el más realista para VE. Optimista es aspiracional, pesimista es contingency plan.",
+    rationale: "El pragmático (158 clientes M12, breakeven M5 operativo, +$6.4K net Q3) es el más realista para VE con pricing $55. Optimista es aspiracional, pesimista es contingency plan.",
     action: "Re-bajar todas las metas de los 7 planes a los números pragmáticos. Mantener pesimista como plan B si churn >15%.",
   },
   {
@@ -418,13 +417,13 @@ export const RECOMMENDATIONS = [
   {
     priority: "Media",
     title: "Medir K viral semanalmente y ajustar incentivos",
-    rationale: "Si K < 0.3 en Sem 4, aumentar incentivo referral (ej: +3 días en vez de +1). Si K > 0.5, mantener.",
+    rationale: "Si K < 0.25 en Sem 4, aumentar incentivo referral (ej: +3 días en vez de +1). Si K > 0.4, mantener.",
     action: "Dashboard Sem con K métrica. A/B test de incentivos cada 4 sem.",
   },
   {
     priority: "Media",
-    title: "Reservar $32K buffer para escenario pesimista",
-    rationale: "Si pesimista se materializa (net -$32K Q3), necesitas cash para sobrevivir y pivotar.",
-    action: "Mantener $32K en treasury líquido (Tier 1+2) como insurance. No invertir en escala hasta K > 0.3 confirmado.",
+    title: "Reservar $11K buffer para escenario pesimista",
+    rationale: "Si pesimista se materializa (net -$11K Q3), necesitas cash para sobrevivir y pivotar. Menos buffer que con $29 (-$32K) gracias a ARPU superior.",
+    action: "Mantener $11K en treasury líquido (Tier 1+2) como insurance. No invertir en escala hasta K > 0.25 confirmado.",
   },
 ]
