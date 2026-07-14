@@ -92,12 +92,12 @@ export function ExponentialAnalysisView() {
         </div>
       </section>
 
-      {/* ===================== PRICING COMPARISON ===================== */}
+      {/* ===================== PRICING TIERS ===================== */}
       <section className="mx-auto max-w-6xl px-4 sm:px-6 py-14 sm:py-20">
         <SectionTitle
-          kicker="Cambio de pricing"
-          title="Precio anterior vs nuevo"
-          desc="Reducción del 31% en mensual ($80→$55), nuevo tier trimestral, y lifetime con escasez (primeros 50). Strategy: equilibrio volumen + margen con viralidad."
+          kicker="Pricing"
+          title="Tiers de suscripción"
+          desc="5 tiers: Trial freemium, mensual, trimestral, anual (más popular) y lifetime con escasez (primeros 50). Strategy: equilibrio volumen + margen con viralidad."
         />
 
         <Card className="border-blue-100 overflow-hidden mb-6">
@@ -107,31 +107,20 @@ export function ExponentialAnalysisView() {
                 <thead>
                   <tr className="border-b text-left text-xs text-muted-foreground" style={{ background: SAND }}>
                     <th className="px-5 py-3 font-medium">Tier</th>
-                    <th className="px-5 py-3 font-medium">Antes</th>
-                    <th className="px-5 py-3 font-medium">Ahora</th>
-                    <th className="px-5 py-3 font-medium text-right">Antes ($/mes)</th>
-                    <th className="px-5 py-3 font-medium text-right">Ahora ($/mes)</th>
-                    <th className="px-5 py-3 font-medium text-center">Cambio</th>
+                    <th className="px-5 py-3 font-medium">Precio</th>
+                    <th className="px-5 py-3 font-medium text-right">$/mes equivalente</th>
                     <th className="px-5 py-3 font-medium">Nota</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {PRICING_COMPARISON.map((p) => {
-                    const isPositive = p.change === "NUEVO" || p.change.includes("-")
-                    return (
-                      <tr key={p.tier} className="border-b last:border-0 hover:bg-blue-50/30">
-                        <td className="px-5 py-3 font-semibold align-top" style={{ color: INK }}>{p.tier}</td>
-                        <td className="px-5 py-3 align-top text-xs text-muted-foreground">{p.oldPrice}</td>
-                        <td className="px-5 py-3 align-top text-xs font-semibold" style={{ color: BLUE_DARK }}>{p.newPrice}</td>
-                        <td className="px-5 py-3 align-top text-right font-mono text-xs text-muted-foreground">{p.oldMonthly}</td>
-                        <td className="px-5 py-3 align-top text-right font-mono text-xs font-bold" style={{ color: INK }}>{p.newMonthly}</td>
-                        <td className="px-5 py-3 align-top text-center">
-                          <Badge className="border-0 text-[10px] text-white" style={{ background: isPositive ? EMERALD : ROSE }}>{p.change}</Badge>
-                        </td>
-                        <td className="px-5 py-3 align-top text-xs text-muted-foreground">{p.note}</td>
-                      </tr>
-                    )
-                  })}
+                  {PRICING_COMPARISON.map((p) => (
+                    <tr key={p.tier} className="border-b last:border-0 hover:bg-blue-50/30">
+                      <td className="px-5 py-3 font-semibold align-top" style={{ color: INK }}>{p.tier}</td>
+                      <td className="px-5 py-3 align-top text-xs font-semibold" style={{ color: BLUE_DARK }}>{p.price}</td>
+                      <td className="px-5 py-3 align-top text-right font-mono text-xs font-bold" style={{ color: INK }}>{p.monthly}</td>
+                      <td className="px-5 py-3 align-top text-xs text-muted-foreground">{p.note}</td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
             </div>
@@ -142,10 +131,10 @@ export function ExponentialAnalysisView() {
           <CardContent className="p-4 flex items-start gap-3">
             <Lightbulb className="size-5 shrink-0 mt-0.5" style={{ color: AMBER }} />
             <div className="text-sm">
-              <p className="font-semibold mb-1" style={{ color: INK }}>Insight clave del cambio de pricing</p>
+              <p className="font-semibold mb-1" style={{ color: INK }}>Insight clave del pricing</p>
               <p className="text-muted-foreground leading-relaxed">
-                ARPU blendado sube a $35-47 (vs $46 original) — solo -5 a -25% del ARPU original, no -55%.
-                <strong style={{ color: INK }}> Breakeven baja a 23-32 clientes</strong> (vs 17 original) — muy alcanzable,
+                ARPU blendado $35-47 según mix de tiers, manteniendo márgenes del 75-80%.
+                <strong style={{ color: INK }}> Breakeven en 23-32 clientes</strong> — muy alcanzable,
                 y el trial + referrals pueden llevar ahí rápido si K {'>'} 0.25. Pricing $55 equilibra volumen y margen.
               </p>
             </div>

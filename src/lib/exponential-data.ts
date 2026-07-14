@@ -1,25 +1,25 @@
 // ============================================================================
 // FichoX — Exponential Mechanics Analysis & Realistic Projections
-// New pricing ($55/mo), viral referrals, trial freemium, feature unlocks
+// Pricing ($55/mo), viral referrals, trial freemium, feature unlocks
 // 3 scenarios: Optimistic / Pragmatic / Pessimistic (VE market aware)
 // ============================================================================
 
 export const EXPO_ANALYSIS = {
-  name: "Análisis Exponencial · Nuevas mecánicas",
+  name: "Análisis Exponencial · Mecánicas",
   date: "Jul 2025",
   summary:
-    "Las nuevas mecánicas (pricing $55/mo, trial freemium 7d, referrals virales con unlock de features, lifetime scarcity) proyectan un crecimiento exponencial POTENCIAL pero dependen críticamente de la ejecución viral y del mercado venezolano. Aquí analizamos 3 escenarios realistas.",
+    "Las mecánicas (pricing $55/mo, trial freemium 7d, referrals virales con unlock de features, lifetime scarcity) proyectan un crecimiento exponencial POTENCIAL pero dependen críticamente de la ejecución viral y del mercado venezolano. Aquí analizamos 3 escenarios realistas.",
 }
 
 // ---------------------------------------------------------------------------
-// NEW PRICING (vs old)
+// PRICING TIERS
 // ---------------------------------------------------------------------------
 export const PRICING_COMPARISON = [
-  { tier: "Trial", oldPrice: "—", newPrice: "$0 · 7 días", oldMonthly: "—", newMonthly: "$0", change: "NUEVO", note: "Freemium con preview de todas las features" },
-  { tier: "Mensual", oldPrice: "$80/mo", newPrice: "$55/mo", oldMonthly: "$80.00", newMonthly: "$55.00", change: "-31%", note: "Precio competitivo LATAM" },
-  { tier: "Trimestral", oldPrice: "—", newPrice: "$149/3mo", oldMonthly: "—", newMonthly: "$49.67", change: "NUEVO", note: "Ahorro 10% vs mensual" },
-  { tier: "Anual", oldPrice: "$250/yr", newPrice: "$399/yr", oldMonthly: "$20.83", newMonthly: "$33.25", change: "+60%", note: "Más popular · ahorro 40% vs mensual" },
-  { tier: "Lifetime", oldPrice: "—", newPrice: "$499 once", oldMonthly: "—", newMonthly: "~$5.20", change: "NUEVO", note: "Solo primeros 50 · escasez" },
+  { tier: "Trial", price: "$0 · 7 días", monthly: "$0", note: "Freemium con preview de todas las features" },
+  { tier: "Mensual", price: "$55/mo", monthly: "$55.00", note: "Precio competitivo LATAM" },
+  { tier: "Trimestral", price: "$149/3mo", monthly: "$49.67", note: "Ahorro 10% vs mensual" },
+  { tier: "Anual", price: "$399/yr", monthly: "$33.25", note: "Más popular · ahorro 40% vs mensual" },
+  { tier: "Lifetime", price: "$499 once", monthly: "~$5.20", note: "Solo primeros 50 · escasez" },
 ]
 
 // ---------------------------------------------------------------------------
@@ -49,7 +49,7 @@ export const MECHANICS_ANALYSIS = [
     type: "Engagement",
     howItWorks: "Google review, social share, WhatsApp share → +1 día cada uno (verificado con VLM screenshot)",
     exponentialPotential: "Medio",
-    rationale: "Cambio clave de +7 a +1: antes 4-5 acciones = mes gratis (canibalizaba revenue). Ahora 55 acciones = mes gratis (casi nadie lo hará, subscribe en su lugar). Mantiene engagement sin matar monetización.",
+    rationale: "55 acciones = mes gratis (casi nadie lo hará, subscribe en su lugar). Mantiene engagement sin canibalizar monetización.",
     risk: "Screenshots falsos. Mitigación: VLM verifica presencia de marca FichoX + URL de referral.",
     metric: "Reward actions per user per month",
   },
@@ -74,10 +74,10 @@ export const MECHANICS_ANALYSIS = [
   {
     mechanic: "Pricing $55/mo (equilibrado)",
     type: "Adquisición",
-    howItWorks: "Mensual $55 (vs $80 original). Trimestral $149. Anual $399. Lifetime $499.",
+    howItWorks: "Mensual $55. Trimestral $149. Anual $399. Lifetime $499.",
     exponentialPotential: "Alto (volumen + margen)",
     rationale: "$55/mo es ~18-20% del salario mínimo VE en USD = asequible para comerciante establecido. ARPU saludable ($35-47 blendado) mantiene márgenes del 75-80%. Compensa volumen con viralidad sin sacrificar rentabilidad.",
-    risk: "Mayor fricción que $29 pero ARPU 2x superior. Breakeven baja de 53-70 a 23-32 clientes.",
+    risk: "Fricción de precio para comerciante informal. Breakeven en 23-32 clientes.",
     metric: "ARPU blendado + volume growth",
   },
 ]
@@ -282,11 +282,11 @@ export const COMBINED_CUMULATIVE = SCENARIOS[0].months.map((_, i) => ({
 // SCENARIO COMPARISON SUMMARY
 // ---------------------------------------------------------------------------
 export const SCENARIO_COMPARISON = [
-  { metric: "ARPU mensual blendado", optimista: "$35.40", pragmatica: "$44.12", pesimista: "$46.88", note: "Mayor precio = ARPU 2x superior al escenario $29" },
+  { metric: "ARPU mensual blendado", optimista: "$35.40", pragmatica: "$44.12", pesimista: "$46.88", note: "Mayor precio mensual = ARPU más alto en escenarios de menor conversión anual" },
   { metric: "Churn mensual", optimista: "5%", pragmatica: "10%", pesimista: "18%", note: "VE churn alto por emigración + apagones" },
   { metric: "CAC blendado", optimista: "$25", pragmatica: "$38", pesimista: "$60", note: "Viral reduce CAC en optimista" },
   { metric: "Coeficiente viral K", optimista: "0.50", pragmatica: "0.30", pesimista: "0.12", note: "K>1 = exponencial real. Ningún escenario lo alcanza" },
-  { metric: "Trial → paid conversión", optimista: "18%", pragmatica: "12%", pesimista: "6%", note: "$55/mo reduce conversión vs $29" },
+  { metric: "Trial → paid conversión", optimista: "18%", pragmatica: "12%", pesimista: "6%", note: "VE ingreso limitado reduce conversión" },
   { metric: "Clientes mes 12", optimista: "450", pragmatica: "158", pesimista: "35", note: "Rango 13x entre extremos" },
   { metric: "Breakeven operativo (clientes)", optimista: "32", pragmatica: "24", pesimista: "23", note: "ARPU alto baja breakeven significativamente" },
   { metric: "Breakeven operativo (mes)", optimista: "M5", pragmatica: "M5", pesimista: "Nunca (12m)", note: "Pesimista no llega a breakeven" },
@@ -303,8 +303,8 @@ export const PLAN_IMPACTS = [
   {
     plan: "1. Plan de Negocio",
     changes: [
-      "ARPU blendado sube a $35-47 (vs $21-26 con $29/mo) — +60-80% superior",
-      "Breakeven baja a 23-32 clientes (vs 53-70 con $29/mo) — mucho más alcanzable",
+      "ARPU blendado $35-47 según mix de tiers",
+      "Breakeven en 23-32 clientes — muy alcanzable",
       "Nuevas fuentes de revenue: Lifetime ($499 × 50 = $24,950 upfront)",
       "Reward days reemplazan potencial churn (engagement sin canibalizar)",
       "Modelo financiero re-proyectado con 3 escenarios y pricing $55",
